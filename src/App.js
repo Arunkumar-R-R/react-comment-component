@@ -4,7 +4,7 @@ import "./sass/style.scss";
 function App() {
   return (
     <div className="App">
-      <Button>Reply</Button>
+      <Button type='primary'>Reply</Button>
     </div>
   );
 }
