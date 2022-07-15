@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import Button from './components/Button/Button';
+import './sass/style.scss';
 
 function App() {
   return (
     <div className="App">
-        <h1>
-          React Component
-        </h1>
+      <Button
+      >Reply</Button>
+      
     </div>
   );
 }
