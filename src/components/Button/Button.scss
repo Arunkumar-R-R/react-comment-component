@@ -7,13 +7,22 @@
     border-radius: 2px;
     cursor: pointer;
     font-size: $small-text;
+    user-select: none;
+    display: flex;
+}
+
+.icon{
+    display: flex;
+}
+.icon-spacing-small{
+    margin:  0 4px 0 0;
 }
 
 .primary{
     background-color: $primary;
     color: $white;
+    &:hover {
+            background-color: $primary-hover;
+    }
 }
 
-.primary:hover{
-    background-color: $primary-hover;
-}
