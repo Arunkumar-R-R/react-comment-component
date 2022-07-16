@@ -1,0 +1,7 @@
+@import './sass-utils/Variable';
+@import './sass-utils/mixins';
+@import './sass-utils/reset';
+
+*{
+    font-family: $font-family;
+}
