@@ -1,0 +1,10 @@
+@import './../../sass/sass-utils/color';
+
+svg {
+    .primary {
+        stroke: $white;
+    }
+    .secondary {
+        stroke: $secondary-text;
+    }
+}

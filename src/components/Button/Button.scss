@@ -1,5 +1,6 @@
 @import './../../sass/sass-utils/color';
 @import './../../sass/sass-utils/variable';
+@import './../../sass/sass-utils/mixins';
 
 .button{
     padding:6px 12px;
@@ -9,20 +10,42 @@
     font-size: $small-text;
     user-select: none;
     display: flex;
+    background: none;
 }
 
 .icon{
     display: flex;
 }
-.icon-spacing-small{
+.left-icon-spacing-small{
     margin:  0 4px 0 0;
+}
+.right-icon-spacing-small{
+    margin: 0 0 0 4px;
 }
 
 .primary{
     background-color: $primary;
     color: $white;
     &:hover {
-            background-color: $primary-hover;
+        background-color: $primary-hover;
+    }
+    &:active{
+        @include darken ($primary-hover, 10);
+    }
+}
+.secondary{
+    background-color: $background;
+    color: $secondary-text;
+    &:hover {
+        background-color: $background-dark;
+    }
+    &:active {
+        @include darken ($background-dark,10);
     }
 }
 
+.gost{
+    &:hover{
+            background-color: $background;
+    }
+}
