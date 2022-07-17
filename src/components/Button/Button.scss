@@ -1,5 +1,6 @@
 @import './../../sass/sass-utils/color';
 @import './../../sass/sass-utils/variable';
+@import './../../sass/sass-utils/mixins';
 
 .button{
     padding:6px 12px;
@@ -28,8 +29,17 @@
         background-color: $primary-hover;
     }
     &:active{
-        background-color: darken($color: $primary-hover, $amount: 10);
+        @include darken ($primary-hover, 10);
     }
 }
-
+.secondary{
+    background-color: $background;
+    color: $secondary-text;
+    &:hover {
+        background-color: $background-dark;
+    }
+    &:active {
+        @include darken ($background-dark,10);
+    }
+}
 
