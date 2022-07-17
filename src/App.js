@@ -10,8 +10,8 @@ function App() {
   return (
     <div className="App">
       <Button
-        type="secondary"
-        leftIcon={<ReplyIcon color="secondary" />}
+        type="gost"
+        leftIcon={<ReplyIcon color={'secondary'} />}
         onClick={() => handleClick()}
       >
         Reply
