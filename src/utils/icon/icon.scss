@@ -1,11 +1,10 @@
 @import './../../sass/sass-utils/color';
 
-
-svg{
+svg {
     .primary {
-            stroke: $white;
-        }
+        stroke: $white;
+    }
     .secondary {
-            stroke: $secondary-text;
-        }
+        stroke: $secondary-text;
+    }
 }
