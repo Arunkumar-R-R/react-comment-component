@@ -14,15 +14,22 @@
 .icon{
     display: flex;
 }
-.icon-spacing-small{
+.left-icon-spacing-small{
     margin:  0 4px 0 0;
+}
+.right-icon-spacing-small{
+    margin: 0 0 0 4px;
 }
 
 .primary{
     background-color: $primary;
     color: $white;
     &:hover {
-            background-color: $primary-hover;
+        background-color: $primary-hover;
+    }
+    &:active{
+        background-color: darken($color: $primary-hover, $amount: 10);
     }
 }
+
 
