@@ -30,7 +30,7 @@
         background-color: $primary-hover;
     }
     &:active{
-        @include darken ($primary-hover, 10);
+        @include darkenBackground ($primary-hover, 10);
     }
 }
 .secondary{
@@ -40,12 +40,15 @@
         background-color: $background-dark;
     }
     &:active {
-        @include darken ($background-dark,10);
+        @include darkenBackground ($background-dark,10);
     }
 }
 
 .gost{
     &:hover{
             background-color: $background;
+    }
+    &:active {
+        @include darkenBackground ($background-dark, 2);
     }
 }

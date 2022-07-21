@@ -6,3 +6,13 @@
     font-family: $font-family;
     box-sizing: border-box;
 }
+
+.flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.right-spacing-12{
+    margin: 0 12px 0 0;
+}

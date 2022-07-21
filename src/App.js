@@ -1,21 +1,12 @@
-import Button from "./components/Button/Button";
+import CommentBoxContainer from "./components/CommentBoxContainer/CommentBoxContainer";
 import "./sass/style.scss";
-import { ReplyIcon } from "./utils/icon/icon";
 
 function App() {
-  const handleClick = () => {
-    console.log("clicked");
-  };
+
 
   return (
-    <div className="App">
-      <Button
-        type="gost"
-        leftIcon={<ReplyIcon color={'secondary'} />}
-        onClick={() => handleClick()}
-      >
-        Reply
-      </Button>
+    <div className="App"git >
+      <CommentBoxContainer/>
     </div>
   );
 }
