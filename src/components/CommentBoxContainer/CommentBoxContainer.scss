@@ -20,18 +20,11 @@
         flex-flow: column nowrap;
         max-width: 700px;
         width: 100%;
-
-        & .commentbox-body {
-            max-height: 200px;
-            overflow-y: auto;
-            padding: 8px;
-            border: 1px solid $border-color;
-        }
-
-        & .commentbox-footer {
-            margin: 16px 0 0 0;
-            display: flex;
-            align-self: flex-end;
-        }
     }
 }
+
+ .commentbox-footer {
+     margin: 16px 0 0 0;
+     display: flex;
+     justify-content: flex-end;
+ }

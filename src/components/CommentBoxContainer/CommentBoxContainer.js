@@ -13,9 +13,7 @@ const CommentBoxContainer = (props) => {
         <div className="threadline"></div>
       </div>
       <div className="commentBoxContainer">
-        <div className="commentbox-body">
-          <CommentBox placeholder={"What are your thoughts?"} />
-        </div>
+        <CommentBox placeholder={"What are your thoughts?"} />
         <div className="commentbox-footer">
           <Button
             classname={"right-spacing-12"}
@@ -27,7 +25,7 @@ const CommentBoxContainer = (props) => {
           <Button type="primary" onClick={() => handleClick()}>
             Reply
           </Button>
-        </div>{" "}
+        </div>
       </div>
     </div>
   );

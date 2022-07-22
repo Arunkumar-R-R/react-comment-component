@@ -1,4 +1,4 @@
-import { useRef} from "react";
+import { useRef, useState } from "react";
 import "./CommentBoxStyle.scss";
 
 const CommentBox = (props) => {
@@ -14,11 +14,13 @@ const CommentBox = (props) => {
 
   return (
     <>
-      <textarea
-        ref={textAreaRef}
-        onChange={handleData}
-        placeholder={placeholder}
-      ></textarea>
+      <div className="comment-box-wrapper">
+        <textarea
+          ref={textAreaRef}
+          onChange={handleData}
+          placeholder={placeholder}
+        ></textarea>
+      </div>
     </>
   );
 };
