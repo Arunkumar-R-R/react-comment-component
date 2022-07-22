@@ -2,26 +2,37 @@
 @import './../../sass/sass-utils/variable';
 @import './../../sass/sass-utils/mixins';
 
- textarea {
-     resize: none;
-     font-size: 14px;
-     line-height: 18px;
-     width: 100%;
-     overflow: hidden;
-     display: flex;
-     border-radius: 2px;
-     border: none;
-     white-space: pre-wrap;
-     word-break: break-word;
-     padding: 0;
-     margin: 0 0 5px 0;
-     color: $secondary-text;
-     
-     &::placeholder {
-         @include lightenColor ($secondary-text, 40);
-     }
+.comment-box-wrapper{
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid $border-color;
+    border-radius: 2px;
 
-     &:focus {
-         outline: none;
-     }
- }
+    &:focus-within{
+        outline: 1px solid ;
+    }
+
+    textarea {
+        resize: none;
+        font-size: 14px;
+        line-height: 18px;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        border: none;
+        white-space: pre-wrap;
+        word-break: break-word;
+        padding: 16px;
+        margin: 0;
+        color: $secondary-text;
+
+        &::placeholder {
+            @include lightenColor ($secondary-text, 40);
+        }
+
+            &:focus {
+                outline: none;
+        }
+    }
+}
+ 

@@ -3,7 +3,8 @@
 @import './sass-utils/reset';
 
 *{
-    font-family: $font-family;
+    font-family: $font-family !important;
+    font-size: $base-size ;
     box-sizing: border-box;
 }
 
@@ -15,4 +16,21 @@
 
 .right-spacing-12{
     margin: 0 12px 0 0;
+}
+.app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .comment-area{
+        max-width: 1280px;
+        width: calc(100% - 160px);
+        margin: 40px auto;
+        .title{
+            font-size: $large-text;
+        }
+        .initial-comment{
+            margin: 16px 0 0 0;
+        }
+    }
+
 }
