@@ -4,17 +4,7 @@
 
 .wrapper{
     display: flex;
-    & .divider{
-        display: flex;
-        padding: 0 7px;
-        width: 16px;
-        margin: 0 16px 0 0;
-         & .threadline{
-            width: 2px;
-            background-color: $threadline-color;
-            height: 100%;
-        }
-    }
+   
     .commentBoxContainer {
         display: flex;
         flex-flow: column nowrap;
@@ -22,9 +12,3 @@
         width: 100%;
     }
 }
-
- .commentbox-footer {
-     margin: 16px 0 0 0;
-     display: flex;
-     justify-content: flex-end;
- }
