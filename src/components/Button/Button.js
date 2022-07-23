@@ -2,12 +2,12 @@ import { forwardRef } from "react";
 import "./Button.scss";
 
 const Button = forwardRef((props, ref) => {
-  const { classname, children, type, onClick, leftIcon, rightIcon } = props;
+  const { className, children, type, onClick, leftIcon, rightIcon } = props;
 
   return (
     <button
       ref={ref}
-      className={`button ${type} ${classname}`}
+      className={`button ${type} ${className}`}
       onClick={onClick}
     >
       {leftIcon && (

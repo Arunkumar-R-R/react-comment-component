@@ -13,9 +13,6 @@
     background: none;
 }
 
-.icon{
-    display: flex;
-}
 .left-icon-spacing-small{
     margin:  0 4px 0 0;
 }
@@ -35,7 +32,7 @@
 }
 .secondary{
     background-color: $background;
-    color: $secondary-text;
+    color: $body-text-color;
     &:hover {
         background-color: $background-dark;
     }
@@ -45,10 +42,26 @@
 }
 
 .gost{
+    color: $body-text-color;
     &:hover{
             background-color: $background;
     }
     &:active {
         @include darkenBackground ($background-dark, 2);
     }
+}
+
+.icon{
+    padding: 0;
+    display: flex;
+
+    &>*{
+        margin: 0;
+    }
+    &:hover {
+            background-color: $background;
+    }
+    &:active {
+        @include darkenBackground ($background-dark, 2);
+    }       
 }
