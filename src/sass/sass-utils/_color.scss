@@ -1,5 +1,9 @@
 $border-color: #878A8C;
-$secondary-text: #4A525B;
+
+$body-text-color:#4A525B;
+$title-text-color:#1A1A1B;
+$icon-color:$body-text-color;
+
 $primary-hover: #3C69BE;
 $white: #FFFFFF;
 $body-text: #1C1C1C;
@@ -11,3 +15,4 @@ $threadline-color:#EDEFF1;
 
 $primary-disabled: rgba(75, 131, 238, 0.6);
 
+$font-weight-medium:500;
