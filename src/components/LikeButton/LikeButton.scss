@@ -2,13 +2,12 @@
 @import './../../sass/sass-utils/variable';
 @import './../../sass/sass-utils/mixins';
 
-.wrapper{
+.like-button-container{
     display: flex;
-   
-    .commentBoxContainer {
-        display: flex;
-        flex-flow: column nowrap;
-        max-width: 700px;
-        width: 100%;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    & .like-button-count{
+        padding: 4px;
     }
 }

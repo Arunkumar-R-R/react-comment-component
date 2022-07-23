@@ -1,0 +1,42 @@
+@import './../../sass/sass-utils/color';
+@import './../../sass/sass-utils/variable';
+@import './../../sass/sass-utils/mixins';
+
+.comment{
+    display: flex;
+    flex-flow: row nowrap;
+    &:not(:last-child){
+        margin: 0 0 16px 0;
+    }
+    & .comment-col1{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        margin: 0;
+        & img{
+            margin: 0 0 6px 0;
+        }
+    }
+    & .comment-col2{
+        margin: 0 0 0 12px;
+        & h6 {
+            color: $title-text-color;
+            font-size: $smallest-text;
+            font-weight: $font-weight-medium;
+            margin: 10px 0 0 0 ;
+        }
+        & p {
+            margin: 6px 0 0 0;
+            color: $body-text-color;
+            font-size: $regular-text;
+            line-height: 20px;
+        }
+        & .comment-footer {
+            display: flex;
+            flex-flow: row wrap;
+            margin: 6px 0 0 0;
+            position: relative;
+            right: 2px;
+        }
+    } 
+}

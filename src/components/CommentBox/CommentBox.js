@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import "./CommentBoxStyle.scss";
+import { useRef } from "react";
+import "./CommentBox.scss";
 
 const CommentBox = (props) => {
   const { placeholder } = props;

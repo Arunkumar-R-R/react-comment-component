@@ -4,7 +4,7 @@ svg {
     .primary {
         stroke: $white;
     }
-    .secondary {
-        stroke: $secondary-text;
+    .secondary,.gost {
+        stroke: $icon-color;
     }
 }
