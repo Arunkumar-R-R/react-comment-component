@@ -40,8 +40,8 @@ export const ReplyIcon = ({ color }) => {
 export const Upvote = ({ color }) => {
   return (
     <svg
-      width="24"
-      height="24"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -77,8 +77,8 @@ export const Upvote = ({ color }) => {
 export const Downvote = ({ color }) => {
   return (
     <svg
-      width="24"
-      height="24"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +89,7 @@ export const Downvote = ({ color }) => {
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        className={color}
       />
       <path
         d="M16 15L12 19"
@@ -96,6 +97,7 @@ export const Downvote = ({ color }) => {
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        className={color}
       />
       <path
         d="M8 15L12 19"
@@ -103,6 +105,7 @@ export const Downvote = ({ color }) => {
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
+        className={color}
       />
     </svg>
   );
