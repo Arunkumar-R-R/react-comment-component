@@ -3,23 +3,24 @@ import CommentBox from "../CommentBox/CommentBox";
 import "./CommentBoxContainer.scss";
 
 const CommentBoxContainer = (props) => {
+  const { onCancel } = props;
+
   const handleClick = () => {
     console.log("clicked");
   };
 
   return (
     <div className="wrapper">
-      <div className="divider">
-        <div className="threadline"></div>
+      <div className="col-1">
+        <div className="divider">
+          <div className="threadline"></div>
+        </div>
       </div>
+
       <div className="commentBoxContainer">
         <CommentBox placeholder={"What are your thoughts?"} />
         <div className="commentbox-footer">
-          <Button
-            classname={"right-spacing-12"}
-            type="gost"
-            onClick={() => handleClick()}
-          >
+          <Button className={"right-spacing-12"} type="gost" onClick={onCancel}>
             cancel
           </Button>
           <Button type="primary" onClick={() => handleClick()}>

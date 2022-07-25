@@ -3,8 +3,20 @@ import Button from "../Button/Button";
 import LikeButton from "./../LikeButton/LikeButton";
 import "./Comment.scss";
 import user1 from "./../../utils/avatar/user1.png";
+import { useState } from "react";
+import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 
 const Comment = () => {
+  const [showReply, setShowReply] = useState(false);
+
+  const showCommentBox = () => {
+    setShowReply(!showReply);
+  };
+
+  const closeCommentBox = () => {
+    setShowReply(false);
+  };
+
   return (
     <div className="comment">
       <div className="comment-col1">
@@ -20,12 +32,14 @@ const Comment = () => {
           <LikeButton></LikeButton>
           <Button
             type="gost"
+            onClick={showCommentBox}
             className={"margin-left-4"}
             leftIcon={<ReplyIcon color={"gost"} />}
           >
             Reply
           </Button>
         </div>
+        {showReply && <CommentBoxContainer onCancel={closeCommentBox} />}
       </div>
     </div>
   );
