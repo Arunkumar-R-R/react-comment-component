@@ -3,8 +3,12 @@
 @import './../../sass/sass-utils/mixins';
 
 .wrapper{
+    margin: 16px 0 0 0;
     display: flex;
-   
+    flex-flow: row nowrap;
+    .col-1{
+       margin: 0 16px 0 0; 
+    }
     .commentBoxContainer {
         display: flex;
         flex-flow: column nowrap;
