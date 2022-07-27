@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import "./CommentBox.scss";
+import "./CommentForm.scss";
 
 const CommentBox = (props) => {
   const { placeholder } = props;

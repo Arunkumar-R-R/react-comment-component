@@ -1,15 +1,24 @@
 import Button from "./components/Button/Button";
 import Comment from "./components/Comment/Comment";
-import CommentBox from "./components/CommentBox/CommentBox";
-import useWindowSize from "./hooks/useWindowSize";
+import CommentBox from "./components/CommentBox/CommentForm";
+import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [comments, setComments] = useState([]);
+
   const handleClick = () => {
     console.log("clicked");
   };
-  const { width } = useWindowSize();
-  console.log(width, "width");
+
+  useEffect(() => {
+    getCommentsApi().then((data) => {
+      setComments(data);
+    });
+  }, []);
+
+  console.log(comments, "comments");
   return (
     <div className="app">
       <div className="comment-area">
