@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import CommentBox from "../CommentBox/CommentBox";
+import CommentBox from "../CommentBox/CommentForm";
 import "./CommentBoxContainer.scss";
 
 const CommentBoxContainer = (props) => {
