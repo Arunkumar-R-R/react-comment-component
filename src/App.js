@@ -18,7 +18,6 @@ function App() {
     });
   }, []);
 
-  console.log(comments, "comments");
   return (
     <div className="app">
       <div className="comment-area">
@@ -32,11 +31,9 @@ function App() {
           </div>
         </div>
         <div>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
+          {comments.map((comment) => {
+            return <Comment data={comment} />;
+          })}
         </div>
       </div>
     </div>
