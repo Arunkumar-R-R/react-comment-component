@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import "./CommentForm.scss";
 
-const CommentBox = (props) => {
+const CommentForm = (props) => {
   const { placeholder } = props;
 
   let textAreaRef = useRef(null);
@@ -25,4 +25,4 @@ const CommentBox = (props) => {
   );
 };
 
-export default CommentBox;
+export default CommentForm;

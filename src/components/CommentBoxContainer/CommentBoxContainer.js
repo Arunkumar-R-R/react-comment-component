@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import CommentBox from "../CommentBox/CommentForm";
+import CommentForm from "../CommentForm/CommentForm";
 import "./CommentBoxContainer.scss";
 
 const CommentBoxContainer = (props) => {
@@ -18,7 +18,7 @@ const CommentBoxContainer = (props) => {
       </div>
 
       <div className="commentBoxContainer">
-        <CommentBox placeholder={"What are your thoughts?"} />
+        <CommentForm placeholder={"What are your thoughts?"} />
         <div className="commentbox-footer">
           <Button className={"right-spacing-12"} type="gost" onClick={onCancel}>
             cancel

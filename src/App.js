@@ -1,6 +1,6 @@
 import Button from "./components/Button/Button";
 import Comment from "./components/Comment/Comment";
-import CommentBox from "./components/CommentBox/CommentForm";
+import CommentBox from "./components/CommentForm/CommentForm";
 import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
 import { useEffect, useState } from "react";
