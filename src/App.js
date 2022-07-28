@@ -1,6 +1,6 @@
 import Button from "./components/Button/Button";
 import Comment from "./components/Comment/Comment";
-import CommentBox from "./components/CommentBox/CommentForm";
+import CommentBox from "./components/CommentForm/CommentForm";
 import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
 import { useEffect, useState } from "react";
@@ -18,7 +18,6 @@ function App() {
     });
   }, []);
 
-  console.log(comments, "comments");
   return (
     <div className="app">
       <div className="comment-area">
@@ -32,11 +31,9 @@ function App() {
           </div>
         </div>
         <div>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
-          <Comment></Comment>
+          {comments.map((comment) => {
+            return <Comment data={comment} />;
+          })}
         </div>
       </div>
     </div>
