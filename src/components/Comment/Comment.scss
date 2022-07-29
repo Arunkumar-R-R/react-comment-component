@@ -31,6 +31,8 @@
             margin: 6px 0 0 0;
             color: $body-text-color;
             font-size: $regular-text;
+            white-space: pre-wrap;
+            word-break: break-word;
             line-height: 20px;
         }
         & .comment-footer {
