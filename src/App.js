@@ -1,15 +1,21 @@
 import Button from "./components/Button/Button";
 import Comment from "./components/Comment/Comment";
-import CommentBox from "./components/CommentForm/CommentForm";
 import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import CommentForm from "./components/CommentForm/CommentForm";
 
 function App() {
   const [comments, setComments] = useState([]);
+  const [currentComment, SetCurrentComment] = useState([]);
 
   const handleClick = () => {
-    console.log("clicked");
+    const data = {
+      text: currentComment,
+      username: "current user",
+      userId: comments.length + 1,
+    };
+    setComments([...comments, data]);
   };
 
   useEffect(() => {
@@ -23,14 +29,14 @@ function App() {
       <div className="comment-area">
         <h1 className="title"> what is your comment on react library ?</h1>
         <div className="initial-comment">
-          <CommentBox></CommentBox>
+          <CommentForm getData={SetCurrentComment} />
           <div className="commentbox-footer">
             <Button type="primary" onClick={() => handleClick()}>
               comment
             </Button>
           </div>
         </div>
-        <div>
+        <div className="comment-section">
           {comments.map((comment) => {
             return <Comment data={comment} />;
           })}

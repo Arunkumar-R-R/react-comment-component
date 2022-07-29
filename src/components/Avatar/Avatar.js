@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const Avatar = (prop) => {
-  const { username, className } = prop;
+  const { username, className, id } = prop;
 
   let name = username;
   let nameSplit = name.split(" ");
@@ -29,12 +29,10 @@ const Avatar = (prop) => {
   };
 
   useEffect(() => {
-    let canvas = document.getElementById(`${username}`);
+    let canvas = document.getElementById(`${id}`);
     canvasCreater(canvas);
   });
 
-  return (
-    <canvas className={className} id={username} width="35" height="35"></canvas>
-  );
+  return <canvas className={className} id={id} width="35" height="35"></canvas>;
 };
 export default Avatar;
