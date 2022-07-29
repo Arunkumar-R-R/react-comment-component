@@ -30,7 +30,7 @@ function App() {
             </Button>
           </div>
         </div>
-        <div>
+        <div className="comment-section">
           {comments.map((comment) => {
             return <Comment data={comment} />;
           })}

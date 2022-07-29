@@ -25,7 +25,7 @@
     align-items: center;
     .comment-area{
         max-width: 1000px;
-        width: calc(100% - 25px);
+        width: 600px;
         margin: 40px auto;
         .title{
             font-size: $large-text;
@@ -65,4 +65,10 @@
 
 .mb-6{
     margin: 0 0 6px 0;
+}
+
+@media  (max-width:630px) {
+    .comment-area {
+        width: 95% !important;
+    }
 }
