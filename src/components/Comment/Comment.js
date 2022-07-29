@@ -21,7 +21,11 @@ const Comment = (prop) => {
   return (
     <div className="comment">
       <div className="comment-col1">
-        <Avatar className={"mb-6"} username={data.username}></Avatar>
+        <Avatar
+          className={"mb-6"}
+          id={data.userId}
+          username={data.username}
+        ></Avatar>
         <div className="divider">
           <div className="threadline"></div>
         </div>
