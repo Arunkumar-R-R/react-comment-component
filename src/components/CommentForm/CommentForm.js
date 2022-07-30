@@ -1,8 +1,8 @@
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import "./CommentForm.scss";
 
 const CommentForm = forwardRef((props, ref) => {
-  const { placeholder, getData } = props;
+  const { placeholder, getData, isReset, setReset } = props;
 
   const [currentValue, setCurrentValue] = useState();
 
@@ -14,10 +14,19 @@ const CommentForm = forwardRef((props, ref) => {
     setCurrentValue(element.value);
   };
 
+  useEffect(() => {
+    const textAreaElement = document.getElementById("textArea");
+    textAreaElement.value = "";
+    return () => {
+      setReset(false);
+    };
+  }, [isReset, setReset]);
+
   return (
     <>
       <div className="comment-box-wrapper">
         <textarea
+          id="textArea"
           ref={ref}
           onChange={handleData}
           placeholder={placeholder}
