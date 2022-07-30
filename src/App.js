@@ -8,6 +8,7 @@ import CommentForm from "./components/CommentForm/CommentForm";
 function App() {
   const [comments, setComments] = useState([]);
   const [currentComment, SetCurrentComment] = useState([]);
+  const [reset, setReset] = useState(false);
 
   const handleClick = () => {
     const data = {
@@ -16,6 +17,7 @@ function App() {
       userId: comments.length + 1,
     };
     setComments([...comments, data]);
+    setReset(true);
   };
 
   useEffect(() => {
@@ -29,7 +31,11 @@ function App() {
       <div className="comment-area">
         <h1 className="title"> what is your comment on react library ?</h1>
         <div className="initial-comment">
-          <CommentForm getData={SetCurrentComment} />
+          <CommentForm
+            getData={SetCurrentComment}
+            isReset={reset}
+            setReset={setReset}
+          />
           <div className="commentbox-footer">
             <Button type="primary" onClick={() => handleClick()}>
               comment
