@@ -2,7 +2,7 @@ import Button from "./components/Button/Button";
 import Comment from "./components/Comment/Comment";
 import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import CommentForm from "./components/CommentForm/CommentForm";
 
 function App() {
