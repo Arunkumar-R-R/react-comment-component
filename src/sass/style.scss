@@ -67,6 +67,12 @@
     margin: 0 0 6px 0;
 }
 
+.comment-label{
+    font-size: $smallest-text;
+    color: $body-text-color;
+    margin: 0 0 4px 0;
+}
+
 @media  (max-width:630px) {
     .comment-area {
         width: 95% !important;

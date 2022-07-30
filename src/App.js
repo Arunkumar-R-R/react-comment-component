@@ -31,10 +31,12 @@ function App() {
       <div className="comment-area">
         <h1 className="title"> what is your comment on react library ?</h1>
         <div className="initial-comment">
+          <div className="comment-label">Comment as Current User</div>
           <CommentForm
             getData={SetCurrentComment}
             isReset={reset}
             setReset={setReset}
+            placeholder={"what are your thought ?"}
           />
           <div className="commentbox-footer">
             <Button type="primary" onClick={() => handleClick()}>
