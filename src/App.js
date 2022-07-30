@@ -16,7 +16,7 @@ function App() {
       username: "current user",
       userId: comments.length + 1,
     };
-    setComments([...comments, data]);
+    setComments([data, ...comments]);
     setReset(true);
   };
 
