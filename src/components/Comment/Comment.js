@@ -2,7 +2,7 @@ import { ReplyIcon } from "../../utils/icon/icon";
 import Button from "../Button/Button";
 import LikeButton from "./../LikeButton/LikeButton";
 import "./Comment.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 import Avatar from "../Avatar/Avatar";
 
@@ -17,6 +17,10 @@ const Comment = (prop) => {
   const closeCommentBox = () => {
     setShowReply(false);
   };
+
+  useEffect(() => {
+    setShowReply(false);
+  }, [data]);
 
   return (
     <div className="comment">
@@ -44,7 +48,9 @@ const Comment = (prop) => {
             Reply
           </Button>
         </div>
-        {showReply && <CommentBoxContainer onCancel={closeCommentBox} />}
+        {showReply && (
+          <CommentBoxContainer id={data.userId} onCancel={closeCommentBox} />
+        )}
       </div>
     </div>
   );

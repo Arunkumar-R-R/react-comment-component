@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useState } from "react";
 import "./CommentForm.scss";
 
 const CommentForm = forwardRef((props, ref) => {
-  const { placeholder, getData, isReset, setReset } = props;
+  const { placeholder, getData, isReset, setReset, id } = props;
 
   const [currentValue, setCurrentValue] = useState();
 
@@ -15,18 +15,18 @@ const CommentForm = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    const textAreaElement = document.getElementById("textArea");
+    const textAreaElement = document.getElementById(id);
     textAreaElement.value = "";
     return () => {
       setReset(false);
     };
-  }, [isReset, setReset]);
+  }, [isReset, setReset, id]);
 
   return (
     <>
       <div className="comment-box-wrapper">
         <textarea
-          id="textArea"
+          id={id}
           ref={ref}
           onChange={handleData}
           placeholder={placeholder}

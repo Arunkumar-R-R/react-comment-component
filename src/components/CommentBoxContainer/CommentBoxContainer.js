@@ -1,9 +1,11 @@
+import { useState } from "react";
 import Button from "../Button/Button";
 import CommentForm from "../CommentForm/CommentForm";
 import "./CommentBoxContainer.scss";
 
 const CommentBoxContainer = (props) => {
-  const { onCancel } = props;
+  const { onCancel, id } = props;
+  const [reset, setReset] = useState(false);
 
   const handleClick = () => {
     console.log("clicked");
@@ -18,7 +20,12 @@ const CommentBoxContainer = (props) => {
       </div>
 
       <div className="commentBoxContainer">
-        <CommentForm placeholder={"What are your thoughts?"} />
+        <CommentForm
+          id={id}
+          isReset={reset}
+          setReset={setReset}
+          placeholder={"What are your thoughts?"}
+        />
         <div className="commentbox-footer">
           <Button className={"right-spacing-12"} type="gost" onClick={onCancel}>
             cancel
