@@ -17,6 +17,9 @@ const CommentForm = forwardRef((props, ref) => {
   useEffect(() => {
     const textAreaElement = document.getElementById(id);
     textAreaElement.value = "";
+    textAreaElement.style.height = "auto";
+    textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
+
     return () => {
       setReset(false);
     };
