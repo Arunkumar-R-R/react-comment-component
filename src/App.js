@@ -7,8 +7,9 @@ import CommentForm from "./components/CommentForm/CommentForm";
 
 function App() {
   const [comments, setComments] = useState([]);
-  const [currentComment, SetCurrentComment] = useState([]);
+  const [currentComment, SetCurrentComment] = useState("");
   const [reset, setReset] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const handleClick = () => {
     const data = {
@@ -26,6 +27,15 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    let currentDataLength = currentComment.length;
+    if (currentDataLength > 0) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [currentComment]);
+
   return (
     <div className="app">
       <div className="comment-area">
@@ -40,7 +50,11 @@ function App() {
             placeholder={"what are your thought ?"}
           />
           <div className="commentbox-footer">
-            <Button type="primary" onClick={() => handleClick()}>
+            <Button
+              type="primary"
+              onClick={() => handleClick()}
+              {...(isDisabled ? { disabled: "disabled" } : "")}
+            >
               comment
             </Button>
           </div>
