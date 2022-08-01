@@ -33,6 +33,7 @@ function App() {
         <div className="initial-comment">
           <div className="comment-label">Comment as Current User</div>
           <CommentForm
+            id={"currentUser"}
             getData={SetCurrentComment}
             isReset={reset}
             setReset={setReset}
@@ -45,8 +46,8 @@ function App() {
           </div>
         </div>
         <div className="comment-section">
-          {comments.map((comment) => {
-            return <Comment data={comment} />;
+          {comments.map((comment, index) => {
+            return <Comment key={index} id={index} data={comment} />;
           })}
         </div>
       </div>

@@ -6,6 +6,7 @@ import "./CommentBoxContainer.scss";
 const CommentBoxContainer = (props) => {
   const { onCancel, id } = props;
   const [reset, setReset] = useState(false);
+  const [currentComment, SetCurrentComment] = useState([]);
 
   const handleClick = () => {
     console.log("clicked");
@@ -21,6 +22,7 @@ const CommentBoxContainer = (props) => {
 
       <div className="commentBoxContainer">
         <CommentForm
+          getData={SetCurrentComment}
           id={id}
           isReset={reset}
           setReset={setReset}
