@@ -43,11 +43,19 @@
 
 .gost{
     color: $body-text-color;
-    &:hover{
+    &:hover {
             background-color: $background;
     }
     &:active {
         @include darkenBackground ($background-dark, 2);
+    }
+}
+
+.disabled-btn{
+    background-color:$primary-disabled ;
+    cursor: not-allowed;
+    &:hover {
+        background-color: $primary-disabled ;
     }
 }
 
