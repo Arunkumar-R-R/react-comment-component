@@ -6,8 +6,10 @@
     margin: 16px 0 0 0;
     display: flex;
     flex-flow: row nowrap;
+    position: relative;
+    left: -16px;
     .col-1{
-       margin: 0 16px 0 0; 
+       margin: 0 14px 0 0; 
     }
     .commentBoxContainer {
         display: flex;
