@@ -1,6 +1,5 @@
 import { ReplyIcon } from "../../utils/icon/icon";
 import Button from "../Button/Button";
-import LikeButton from "./../LikeButton/LikeButton";
 import "./Comment.scss";
 import { useEffect, useState } from "react";
 import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
