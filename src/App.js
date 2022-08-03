@@ -19,9 +19,23 @@ function App() {
       username: "current user",
       userId: currentUserId,
       commentId: comments.length + 1,
+      replyComment: [],
+      upVoteCount: 0,
     };
     setComments([data, ...comments]);
     setReset(true);
+  };
+
+  const deleteComment = (id) => {
+    let duplicateCommentArray = [...comments];
+    let matchedComment = duplicateCommentArray.filter((comment) => {
+      if (comment.commentId === id) {
+        return comment;
+      }
+    });
+    let index = duplicateCommentArray.indexOf(matchedComment[0]);
+    duplicateCommentArray.splice(index, 1);
+    setComments(duplicateCommentArray);
   };
 
   useEffect(() => {
@@ -68,6 +82,7 @@ function App() {
               <Comment
                 key={index}
                 currentUser={currentUserId}
+                onDelete={deleteComment}
                 id={index}
                 data={comment}
               />

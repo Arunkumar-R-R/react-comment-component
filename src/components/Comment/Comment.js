@@ -6,7 +6,7 @@ import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 import Avatar from "../Avatar/Avatar";
 
 const Comment = (prop) => {
-  const { data, currentUser } = prop;
+  const { data, currentUser, onDelete } = prop;
   const [showReply, setShowReply] = useState(false);
 
   const showCommentBox = () => {
@@ -51,6 +51,7 @@ const Comment = (prop) => {
                 type="gost"
                 size="sm"
                 className={"margin-left-4"}
+                onClick={() => onDelete(data.commentId)}
                 leftIcon={<DeleteIcon color={"gost"} />}
               >
                 Delete
