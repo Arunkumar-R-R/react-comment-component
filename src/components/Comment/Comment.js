@@ -1,4 +1,4 @@
-import { ReplyIcon } from "../../utils/icon/icon";
+import { DeleteIcon, EditIcon, ReplyIcon } from "../../utils/icon/icon";
 import Button from "../Button/Button";
 import "./Comment.scss";
 import { useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 import Avatar from "../Avatar/Avatar";
 
 const Comment = (prop) => {
-  const { data } = prop;
+  const { data, currentUser } = prop;
   const [showReply, setShowReply] = useState(false);
 
   const showCommentBox = () => {
@@ -26,7 +26,7 @@ const Comment = (prop) => {
       <div className="comment-col1">
         <Avatar
           className={"mb-6"}
-          id={data.userId}
+          id={data.commentId}
           username={data.username}
         ></Avatar>
         <div className="divider">
@@ -45,6 +45,26 @@ const Comment = (prop) => {
           >
             Reply
           </Button>
+          {currentUser === data.userId && (
+            <>
+              <Button
+                type="gost"
+                size="sm"
+                className={"margin-left-4"}
+                leftIcon={<DeleteIcon color={"gost"} />}
+              >
+                Delete
+              </Button>
+              <Button
+                type="gost"
+                size="sm"
+                className={"margin-left-4"}
+                leftIcon={<EditIcon color={"gost"} />}
+              >
+                Edit
+              </Button>
+            </>
+          )}
         </div>
         {showReply && (
           <CommentBoxContainer id={data.userId} onCancel={closeCommentBox} />
