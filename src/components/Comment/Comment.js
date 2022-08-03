@@ -38,11 +38,10 @@ const Comment = (prop) => {
         <h6>{data?.username}</h6>
         <p>{data?.text}</p>
         <div className="comment-footer">
-          <LikeButton></LikeButton>
           <Button
             type="gost"
+            size="sm"
             onClick={showCommentBox}
-            className={"margin-left-4"}
             leftIcon={<ReplyIcon color={"gost"} />}
           >
             Reply
