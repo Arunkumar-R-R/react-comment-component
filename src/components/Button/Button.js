@@ -9,6 +9,7 @@ const Button = forwardRef((props, ref) => {
     onClick,
     leftIcon,
     rightIcon,
+    size,
     disabled = false,
   } = props;
 
@@ -17,7 +18,7 @@ const Button = forwardRef((props, ref) => {
       ref={ref}
       className={`button ${type} ${className} ${
         disabled ? "disabled-btn" : ""
-      } `}
+      } ${size}`}
       onClick={onClick}
       disabled={disabled}
     >
