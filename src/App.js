@@ -11,11 +11,14 @@ function App() {
   const [reset, setReset] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
 
+  const currentUserId = "currentUser";
+
   const handleClick = () => {
     const data = {
       text: currentComment,
       username: "current user",
-      userId: comments.length + 1,
+      userId: currentUserId,
+      commentId: comments.length + 1,
     };
     setComments([data, ...comments]);
     setReset(true);
@@ -61,7 +64,14 @@ function App() {
         </div>
         <div className="comment-section">
           {comments.map((comment, index) => {
-            return <Comment key={index} id={index} data={comment} />;
+            return (
+              <Comment
+                key={index}
+                currentUser={currentUserId}
+                id={index}
+                data={comment}
+              />
+            );
           })}
         </div>
       </div>
