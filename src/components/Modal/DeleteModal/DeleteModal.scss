@@ -1,0 +1,14 @@
+@import './../../../sass/sass-utils/color';
+@import './../../../sass/sass-utils/variable';
+@import './../../../sass/sass-utils/mixins';
+
+.delete-modal-body{
+    background-color: white;
+    padding: 34px 42px;
+    border-radius: 2px;
+    & .delete-modal-body-footer{
+        display: flex;
+        justify-content: flex-end;
+        margin: 20px 0 0 0;
+    }
+}

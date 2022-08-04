@@ -4,10 +4,13 @@ import "./Comment.scss";
 import { useEffect, useState } from "react";
 import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 import Avatar from "../Avatar/Avatar";
+import Modal from "../Modal/Modal";
+import DeleteModal from "../Modal/DeleteModal/DeleteModal";
 
 const Comment = (prop) => {
   const { data, currentUser, onDelete } = prop;
   const [showReply, setShowReply] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const showCommentBox = () => {
     setShowReply(!showReply);
@@ -15,6 +18,9 @@ const Comment = (prop) => {
 
   const closeCommentBox = () => {
     setShowReply(false);
+  };
+  const onCancel = () => {
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -51,7 +57,7 @@ const Comment = (prop) => {
                 type="gost"
                 size="sm"
                 className={"margin-left-4"}
-                onClick={() => onDelete(data.commentId)}
+                onClick={() => setIsOpen(true)}
                 leftIcon={<DeleteIcon color={"gost"} />}
               >
                 Delete
@@ -71,6 +77,19 @@ const Comment = (prop) => {
           <CommentBoxContainer id={data.userId} onCancel={closeCommentBox} />
         )}
       </div>
+      {isOpen ? (
+        <Modal>
+          <DeleteModal
+            onCancel={onCancel}
+            onDelete={() => {
+              onDelete(data.commentId);
+              setIsOpen(false);
+            }}
+          ></DeleteModal>
+        </Modal>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -1,0 +1,17 @@
+@import './../../sass/sass-utils/color';
+@import './../../sass/sass-utils/variable';
+@import './../../sass/sass-utils/mixins';
+
+.modal{
+    position: fixed;
+    background-color: rgba(135, 138, 140, 0.3);
+    outline: solid;
+    z-index: 1;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 999;
+}
