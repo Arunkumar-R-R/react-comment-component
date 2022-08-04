@@ -19,7 +19,13 @@ const Comment = (prop) => {
   const closeCommentBox = () => {
     setShowReply(false);
   };
-  const onCancel = () => {
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleDelete = () => {
+    onDelete(data.commentId);
     setIsOpen(false);
   };
 
@@ -78,13 +84,10 @@ const Comment = (prop) => {
         )}
       </div>
       {isOpen ? (
-        <Modal>
+        <Modal onClose={handleClose}>
           <DeleteModal
-            onCancel={onCancel}
-            onDelete={() => {
-              onDelete(data.commentId);
-              setIsOpen(false);
-            }}
+            onCancel={handleClose}
+            onDelete={handleDelete}
           ></DeleteModal>
         </Modal>
       ) : (
