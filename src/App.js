@@ -29,13 +29,21 @@ function App() {
   const deleteComment = (id) => {
     let duplicateCommentArray = [...comments];
     let matchedComment = duplicateCommentArray.filter((comment) => {
-      if (comment.commentId === id) {
-        return comment;
-      }
+      return comment.commentId === id ? comment : "";
     });
     let index = duplicateCommentArray.indexOf(matchedComment[0]);
     duplicateCommentArray.splice(index, 1);
     setComments(duplicateCommentArray);
+  };
+
+  const updateComment = (id, updatedComment) => {
+    let duplicateCommentArray = [...comments];
+    duplicateCommentArray.map((comment) => {
+      if (comment.commentId === id) {
+        comment.text = updatedComment;
+      }
+      return comment;
+    });
   };
 
   useEffect(() => {
@@ -85,6 +93,7 @@ function App() {
                 onDelete={deleteComment}
                 id={index}
                 data={comment}
+                onUpdateComment={updateComment}
               />
             );
           })}
