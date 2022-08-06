@@ -42,5 +42,9 @@
             position: relative;
             right: 2px;
         }
+        & .edit-comment-footer{
+            @extend .comment-footer;
+            justify-content: flex-end;
+        }
     } 
 }

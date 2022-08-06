@@ -2,9 +2,10 @@ import { forwardRef, useEffect, useState } from "react";
 import "./CommentForm.scss";
 
 const CommentForm = forwardRef((props, ref) => {
-  const { placeholder, getData, isReset, setReset, id } = props;
+  const { placeholder, getData, setData, isReset, setReset, id, isEdit } =
+    props;
 
-  const [currentValue, setCurrentValue] = useState();
+  const [currentValue, setCurrentValue] = useState(setData ? setData : "");
 
   const handleData = (e) => {
     let element = e.target;
@@ -16,16 +17,20 @@ const CommentForm = forwardRef((props, ref) => {
 
   useEffect(() => {
     const textAreaElement = document.getElementById(id);
-    textAreaElement.value = "";
-    getData("");
-    setCurrentValue("");
+    if (!isEdit) {
+      textAreaElement.value = "";
+      getData("");
+      setCurrentValue("");
+    } else {
+      textAreaElement.focus = true;
+    }
     textAreaElement.style.height = "auto";
     textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
 
     return () => {
       setReset(false);
     };
-  }, [isReset, setReset, id, getData]);
+  }, [isReset, setReset, id, getData, isEdit]);
 
   return (
     <>
