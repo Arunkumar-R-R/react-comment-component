@@ -9,13 +9,17 @@ import DeleteModal from "../Modal/DeleteModal/DeleteModal";
 import CommentForm from "../CommentForm/CommentForm";
 
 const Comment = (prop) => {
-  const { data, currentUser, onDelete } = prop;
+  const { data, currentUser, onDelete, onUpdateComment } = prop;
 
   const [showReply, setShowReply] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showEditComment, setShowEditComment] = useState(false);
-  const [currentComment, SetCurrentComment] = useState("");
+  const [editedComment, SetEditedComment] = useState("");
   const [reset, setReset] = useState(false);
+
+  const editCommentstyle = {
+    margin: "8px 0 0 0",
+  };
 
   const showCommentBox = () => {
     setShowReply(!showReply);
@@ -32,6 +36,11 @@ const Comment = (prop) => {
   const handleDelete = () => {
     onDelete(data.commentId);
     setIsOpen(false);
+  };
+
+  const handleEdit = () => {
+    onUpdateComment(data.commentId, editedComment);
+    setShowEditComment(false);
   };
 
   useEffect(() => {
@@ -54,10 +63,10 @@ const Comment = (prop) => {
         <div className="comment-col2">
           <h6>{data?.username}</h6>
           {showEditComment ? (
-            <div style={{ margin: "8px 0 0 0" }}>
+            <div style={editCommentstyle}>
               <CommentForm
                 id={data.commentId}
-                getData={SetCurrentComment}
+                getData={SetEditedComment}
                 isEdit={true}
                 setData={data.text}
                 isReset={reset}
@@ -75,7 +84,7 @@ const Comment = (prop) => {
                 <Button
                   type="primary"
                   className={"margin-left-4"}
-                  // onClick={onDelete}
+                  onClick={handleEdit}
                 >
                   Save
                 </Button>
