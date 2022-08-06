@@ -38,6 +38,16 @@ function App() {
     setComments(duplicateCommentArray);
   };
 
+  const updateComment = (id, updatedComment) => {
+    let duplicateCommentArray = [...comments];
+    duplicateCommentArray.map((comment) => {
+      if (comment.commentId === id) {
+        comment.text = updatedComment;
+      }
+      return comment;
+    });
+  };
+
   useEffect(() => {
     getCommentsApi().then((data) => {
       setComments(data);
@@ -85,6 +95,7 @@ function App() {
                 onDelete={deleteComment}
                 id={index}
                 data={comment}
+                onUpdateComment={updateComment}
               />
             );
           })}
