@@ -1,4 +1,10 @@
-import { forwardRef, useEffect, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import "./CommentForm.scss";
 
 const CommentForm = forwardRef((props, ref) => {
@@ -6,6 +12,14 @@ const CommentForm = forwardRef((props, ref) => {
     props;
 
   const [currentValue, setCurrentValue] = useState(setData ? setData : "");
+
+  const inputRef = useRef();
+
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    },
+  }));
 
   const handleData = (e) => {
     let element = e.target;
@@ -16,28 +30,37 @@ const CommentForm = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    const textAreaElement = document.getElementById(id);
     if (!isEdit) {
+      const textAreaElement = document.getElementById(id);
+      textAreaElement.focus();
       textAreaElement.value = "";
       getData("");
       setCurrentValue("");
-    } else {
-      textAreaElement.focus = true;
+      textAreaElement.style.height = "auto";
+      textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
     }
-    textAreaElement.style.height = "auto";
-    textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
 
     return () => {
       setReset(false);
     };
-  }, [isReset, setReset, id, getData, isEdit]);
+  }, [isReset, isEdit, setReset, id, getData]);
+
+  useEffect(() => {
+    inputRef.current.focus();
+    inputRef.current.style.height = "auto";
+    inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+
+    return () => {
+      setReset(false);
+    };
+  }, [isEdit, setReset]);
 
   return (
     <>
       <div className="comment-box-wrapper">
         <textarea
           id={id}
-          ref={ref}
+          ref={inputRef}
           onChange={handleData}
           placeholder={placeholder}
           value={currentValue}
