@@ -6,11 +6,16 @@ import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 import Avatar from "../Avatar/Avatar";
 import Modal from "../Modal/Modal";
 import DeleteModal from "../Modal/DeleteModal/DeleteModal";
+import CommentForm from "../CommentForm/CommentForm";
 
 const Comment = (prop) => {
   const { data, currentUser, onDelete } = prop;
+
   const [showReply, setShowReply] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showEditComment, setShowEditComment] = useState(false);
+  const [currentComment, SetCurrentComment] = useState("");
+  const [reset, setReset] = useState(false);
 
   const showCommentBox = () => {
     setShowReply(!showReply);
@@ -34,54 +39,89 @@ const Comment = (prop) => {
   }, [data]);
 
   return (
-    <div className="comment">
-      <div className="comment-col1">
-        <Avatar
-          className={"mb-6"}
-          id={data.commentId}
-          username={data.username}
-        ></Avatar>
-        <div className="divider">
-          <div className="threadline"></div>
+    <>
+      <div className="comment">
+        <div className="comment-col1">
+          <Avatar
+            className={"mb-6"}
+            id={data.commentId}
+            username={data.username}
+          ></Avatar>
+          <div className="divider">
+            <div className="threadline"></div>
+          </div>
         </div>
-      </div>
-      <div className="comment-col2">
-        <h6>{data?.username}</h6>
-        <p>{data?.text}</p>
-        <div className="comment-footer">
-          <Button
-            type="gost"
-            size="sm"
-            onClick={showCommentBox}
-            leftIcon={<ReplyIcon color={"gost"} />}
-          >
-            Reply
-          </Button>
-          {currentUser === data.userId && (
+        <div className="comment-col2">
+          <h6>{data?.username}</h6>
+          {showEditComment ? (
+            <div style={{ margin: "8px 0 0 0" }}>
+              <CommentForm
+                id={data.commentId}
+                getData={SetCurrentComment}
+                isEdit={true}
+                setData={data.text}
+                isReset={reset}
+                setReset={setReset}
+                setShowEditComment={setShowEditComment}
+              ></CommentForm>
+              <div className="edit-comment-footer">
+                <Button
+                  type="gost"
+                  className={"margin-left-4"}
+                  onClick={() => setShowEditComment(!showEditComment)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="primary"
+                  className={"margin-left-4"}
+                  // onClick={onDelete}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          ) : (
             <>
-              <Button
-                type="gost"
-                size="sm"
-                className={"margin-left-4"}
-                onClick={() => setIsOpen(true)}
-                leftIcon={<DeleteIcon color={"gost"} />}
-              >
-                Delete
-              </Button>
-              <Button
-                type="gost"
-                size="sm"
-                className={"margin-left-4"}
-                leftIcon={<EditIcon color={"gost"} />}
-              >
-                Edit
-              </Button>
+              <p>{data?.text}</p>
+              <div className="comment-footer">
+                <Button
+                  type="gost"
+                  size="sm"
+                  onClick={showCommentBox}
+                  leftIcon={<ReplyIcon color={"gost"} />}
+                >
+                  Reply
+                </Button>
+                {currentUser === data.userId && (
+                  <>
+                    <Button
+                      type="gost"
+                      size="sm"
+                      className={"margin-left-4"}
+                      onClick={() => setIsOpen(true)}
+                      leftIcon={<DeleteIcon color={"gost"} />}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      type="gost"
+                      size="sm"
+                      onClick={() => setShowEditComment(!showEditComment)}
+                      className={"margin-left-4"}
+                      leftIcon={<EditIcon color={"gost"} />}
+                    >
+                      Edit
+                    </Button>
+                  </>
+                )}
+              </div>
             </>
           )}
+          {showReply && (
+            <CommentBoxContainer id={data.userId} onCancel={closeCommentBox} />
+          )}
         </div>
-        {showReply && (
-          <CommentBoxContainer id={data.userId} onCancel={closeCommentBox} />
-        )}
       </div>
       {isOpen ? (
         <Modal onClose={handleClose}>
@@ -93,7 +133,7 @@ const Comment = (prop) => {
       ) : (
         ""
       )}
-    </div>
+    </>
   );
 };
 
