@@ -40,6 +40,7 @@ const Comment = (prop) => {
 
   const handleEdit = () => {
     onUpdateComment(data.commentId, editedComment);
+    setReset(true);
     setShowEditComment(false);
   };
 
