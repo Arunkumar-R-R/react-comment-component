@@ -16,6 +16,7 @@ const Comment = (prop) => {
   const [showEditComment, setShowEditComment] = useState(false);
   const [editedComment, SetEditedComment] = useState("");
   const [reset, setReset] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const editCommentstyle = {
     margin: "8px 0 0 0",
@@ -48,6 +49,17 @@ const Comment = (prop) => {
     setShowReply(false);
   }, [data]);
 
+  useEffect(() => {
+    if (currentUser === data.userId) {
+      if (editedComment.length > 0 && editedComment !== data.text) {
+        setIsDisabled(false);
+      }
+    }
+    return () => {
+      setIsDisabled(true);
+    };
+  }, [editedComment, currentUser, data.userId, data.text, isDisabled]);
+
   return (
     <>
       <div className="comment">
@@ -66,7 +78,7 @@ const Comment = (prop) => {
           {showEditComment ? (
             <div style={editCommentstyle}>
               <CommentForm
-                id={data.commentId}
+                id={data?.commentId}
                 getData={SetEditedComment}
                 isEdit={true}
                 setData={data.text}
@@ -86,6 +98,7 @@ const Comment = (prop) => {
                   type="primary"
                   className={"margin-left-4"}
                   onClick={handleEdit}
+                  {...(isDisabled ? { disabled: "disabled" } : "")}
                 >
                   Save
                 </Button>
