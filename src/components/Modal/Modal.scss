@@ -8,10 +8,13 @@
     outline: solid;
     z-index: 1;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    min-height: 100%;
     overflow: hidden;
     z-index: 999;
+    @media screen and (min-width:471px) {
+        display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 }
