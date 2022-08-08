@@ -33,7 +33,7 @@ const CommentBoxContainer = (props) => {
             cancel
           </Button>
           <Button type="primary" onClick={() => handleClick()}>
-            Reply
+            Respond
           </Button>
         </div>
       </div>
