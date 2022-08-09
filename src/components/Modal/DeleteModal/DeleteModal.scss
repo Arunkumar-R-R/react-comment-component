@@ -6,6 +6,9 @@
     background-color: white;
     padding: 34px 42px;
     border-radius: 2px;
+    & p{
+        color: $body-text-color;
+    }
     & .delete-modal-body-footer{
         display: flex;
         justify-content: flex-end;
