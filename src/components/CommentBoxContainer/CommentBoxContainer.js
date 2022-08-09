@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import CommentForm from "../CommentForm/CommentForm";
 import "./CommentBoxContainer.scss";
@@ -7,10 +7,20 @@ const CommentBoxContainer = (props) => {
   const { onCancel, id } = props;
   const [reset, setReset] = useState(false);
   const [currentComment, SetCurrentComment] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const handleClick = () => {
     console.log("clicked");
   };
+
+  useEffect(() => {
+    if (currentComment.length > 0) {
+      setIsDisabled(false);
+    }
+    return () => {
+      setIsDisabled(true);
+    };
+  }, [currentComment, isDisabled]);
 
   return (
     <div className="wrapper">
@@ -32,7 +42,11 @@ const CommentBoxContainer = (props) => {
           <Button className={"right-spacing-12"} type="gost" onClick={onCancel}>
             cancel
           </Button>
-          <Button type="primary" onClick={() => handleClick()}>
+          <Button
+            type="primary"
+            onClick={() => handleClick()}
+            {...(isDisabled ? { disabled: "disabled" } : "")}
+          >
             Respond
           </Button>
         </div>
