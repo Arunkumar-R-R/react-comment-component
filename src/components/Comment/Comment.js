@@ -11,6 +11,11 @@ import CommentForm from "../CommentForm/CommentForm";
 const Comment = (prop) => {
   const { data, currentUser, onDelete, onUpdateComment } = prop;
 
+  let userId = data.userId;
+  let commentText = data.text;
+  let userName = data?.username;
+  let commentId = data?.commentId;
+
   const [showReply, setShowReply] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showEditComment, setShowEditComment] = useState(false);
@@ -35,12 +40,12 @@ const Comment = (prop) => {
   };
 
   const handleDelete = () => {
-    onDelete(data.commentId);
+    onDelete(commentId);
     setIsOpen(false);
   };
 
   const handleEdit = () => {
-    onUpdateComment(data.commentId, editedComment);
+    onUpdateComment(commentId, editedComment);
     setReset(true);
     setShowEditComment(false);
   };
@@ -50,15 +55,15 @@ const Comment = (prop) => {
   }, [data]);
 
   useEffect(() => {
-    if (currentUser === data.userId) {
-      if (editedComment.length > 0 && editedComment !== data.text) {
+    if (currentUser === userId) {
+      if (editedComment.length > 0 && editedComment !== commentText) {
         setIsDisabled(false);
       }
     }
     return () => {
       setIsDisabled(true);
     };
-  }, [editedComment, currentUser, data.userId, data.text, isDisabled]);
+  }, [editedComment, currentUser, userId, commentText, isDisabled]);
 
   return (
     <>
@@ -66,22 +71,22 @@ const Comment = (prop) => {
         <div className="comment-col1">
           <Avatar
             className={"mb-6"}
-            id={data.commentId}
-            username={data.username}
+            id={commentId}
+            username={userName}
           ></Avatar>
           <div className="divider">
             <div className="threadline"></div>
           </div>
         </div>
         <div className="comment-col2">
-          <h6>{data?.username}</h6>
+          <h6>{userName}</h6>
           {showEditComment ? (
             <div style={editCommentstyle}>
               <CommentForm
-                id={data?.commentId}
+                id={commentId}
                 getData={SetEditedComment}
                 isEdit={true}
-                setData={data.text}
+                setData={commentText}
                 isReset={reset}
                 setReset={setReset}
                 setShowEditComment={setShowEditComment}
@@ -106,7 +111,7 @@ const Comment = (prop) => {
             </div>
           ) : (
             <>
-              <p>{data?.text}</p>
+              <p>{commentText}</p>
               <div className="comment-footer">
                 <Button
                   type="gost"
@@ -116,7 +121,7 @@ const Comment = (prop) => {
                 >
                   Reply
                 </Button>
-                {currentUser === data.userId && (
+                {currentUser === userId && (
                   <>
                     <Button
                       type="gost"
@@ -142,7 +147,7 @@ const Comment = (prop) => {
             </>
           )}
           {showReply && (
-            <CommentBoxContainer id={data.userId} onCancel={closeCommentBox} />
+            <CommentBoxContainer id={userId} onCancel={closeCommentBox} />
           )}
         </div>
       </div>
