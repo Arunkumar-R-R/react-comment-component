@@ -30,7 +30,6 @@ export const getComments = async () => {
       username: "Sandra",
       userId: "Sandra11",
       commentId: "102",
-      replyComments: [],
       upVoteCount: 0,
     },
     {
@@ -39,7 +38,6 @@ export const getComments = async () => {
       username: "Willsmith",
       userId: "willsmith12",
       commentId: "103",
-      replyComments: [],
       upVoteCount: 0,
     },
     {
@@ -48,7 +46,6 @@ export const getComments = async () => {
       username: "Denzal washington",
       userId: "denzalwashington13",
       commentId: "104",
-      replyComments: [],
       upVoteCount: 0,
     },
   ];
