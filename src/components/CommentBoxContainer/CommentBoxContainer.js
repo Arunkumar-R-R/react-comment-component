@@ -4,13 +4,43 @@ import CommentForm from "../CommentForm/CommentForm";
 import "./CommentBoxContainer.scss";
 
 const CommentBoxContainer = (props) => {
-  const { onCancel, id } = props;
+  const {
+    onCancel,
+    id,
+    commentId,
+    userId,
+    onRespond,
+    commentsArray,
+    replyCommentsLength,
+  } = props;
   const [reset, setReset] = useState(false);
   const [currentComment, SetCurrentComment] = useState([]);
   const [isDisabled, setIsDisabled] = useState(true);
 
   const handleClick = () => {
-    console.log("clicked");
+    const data = {
+      text: currentComment,
+      username: "current user",
+      parentId: commentId,
+      userId: userId,
+      commentId: replyCommentsLength + commentId,
+      upVoteCount: 0,
+    };
+    //deep copy of commentsArray
+    const commentsList = JSON.parse(JSON.stringify(commentsArray));
+    commentsList.filter((comment) => {
+      if (comment.commentId === commentId) {
+        if (comment.replyComments) {
+          let replyComments = comment.replyComments;
+          comment.replyComments = [...replyComments, data];
+        } else {
+          comment.replyComments = [data];
+        }
+        return comment;
+      }
+    });
+    onRespond(commentsList);
+    onCancel();
   };
 
   useEffect(() => {

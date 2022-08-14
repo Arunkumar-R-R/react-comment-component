@@ -9,12 +9,24 @@ import DeleteModal from "../Modal/DeleteModal/DeleteModal";
 import CommentForm from "../CommentForm/CommentForm";
 
 const Comment = (prop) => {
-  const { data, currentUser, onDelete, onUpdateComment } = prop;
+  const {
+    data,
+    currentUser,
+    onDelete,
+    onUpdateComment,
+    onAddComment,
+    commentsArray,
+  } = prop;
 
   let userId = data.userId;
   let commentText = data.text;
   let userName = data?.username;
   let commentId = data?.commentId;
+  let replyComments = data?.replyComments;
+
+  let replyCommentsLength = replyComments?.length
+    ? replyComments.length
+    : `0${commentId}`;
 
   const [showReply, setShowReply] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -147,19 +159,51 @@ const Comment = (prop) => {
             </>
           )}
           {showReply && (
-            <CommentBoxContainer id={userId} onCancel={closeCommentBox} />
+            <CommentBoxContainer
+              id={userId}
+              replyCommentsLength={replyCommentsLength}
+              commentId={commentId}
+              userId={currentUser}
+              onCancel={closeCommentBox}
+              commentsArray={commentsArray}
+              onRespond={onAddComment}
+            />
           )}
+          {replyComments?.length > 0
+            ? replyComments.map((replyComment) => {
+                let commentId = replyComment.commentId;
+                let userName = replyComment.username;
+                let commentText = replyComment.text;
+
+                return (
+                  <div className="replyComments">
+                    <div className="comment-col1">
+                      <Avatar
+                        className={"mb-6"}
+                        id={commentId}
+                        username={userName}
+                      ></Avatar>
+                      <div className="divider">
+                        <div className="threadline"></div>
+                      </div>
+                    </div>
+                    <div className="comment-col2">
+                      <h6>{userName}</h6>
+                      <p>{commentText}</p>
+                    </div>
+                  </div>
+                );
+              })
+            : ""}
         </div>
       </div>
-      {isOpen ? (
+      {isOpen && (
         <Modal onClose={handleClose}>
           <DeleteModal
             onCancel={handleClose}
             onDelete={handleDelete}
           ></DeleteModal>
         </Modal>
-      ) : (
-        ""
       )}
     </>
   );
