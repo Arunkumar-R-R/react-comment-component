@@ -6,7 +6,22 @@ export const getComments = async () => {
       username: "Arun",
       userId: "arun10",
       commentId: "101",
-      replyComment: [],
+      replyComments: [
+        {
+          username: "kari",
+          userId: "kari37",
+          commentId: "1011",
+          parentId: "101",
+          text: "Yes it is great library but angular is best for enterprise level application",
+        },
+        {
+          username: "koti",
+          userId: "koti20",
+          commentId: "1012",
+          parentId: "101",
+          text: "I agree that statement",
+        },
+      ],
       upVoteCount: 0,
     },
     {
@@ -15,7 +30,7 @@ export const getComments = async () => {
       username: "Sandra",
       userId: "Sandra11",
       commentId: "102",
-      replyComment: [],
+      replyComments: [],
       upVoteCount: 0,
     },
     {
@@ -24,7 +39,7 @@ export const getComments = async () => {
       username: "Willsmith",
       userId: "willsmith12",
       commentId: "103",
-      replyComment: [],
+      replyComments: [],
       upVoteCount: 0,
     },
     {
@@ -33,7 +48,7 @@ export const getComments = async () => {
       username: "Denzal washington",
       userId: "denzalwashington13",
       commentId: "104",
-      replyComment: [],
+      replyComments: [],
       upVoteCount: 0,
     },
   ];
