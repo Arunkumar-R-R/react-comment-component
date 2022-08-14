@@ -19,7 +19,6 @@ function App() {
       username: "current user",
       userId: currentUserId,
       commentId: comments.length + 1,
-      replyComment: [],
       upVoteCount: 0,
     };
     setComments([data, ...comments]);
@@ -93,6 +92,8 @@ function App() {
                 onDelete={deleteComment}
                 id={index}
                 data={comment}
+                commentsArray={comments}
+                onAddComment={setComments}
                 onUpdateComment={updateComment}
               />
             );

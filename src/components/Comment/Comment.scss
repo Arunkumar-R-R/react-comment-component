@@ -30,7 +30,7 @@
         & p {
             margin: 8px 0 0 0;
             color: $body-text-color;
-            font-size: $small-text;
+            font-size: $regular-text;
             white-space: pre-wrap;
             word-break: break-word;
             line-height: 20px;
@@ -45,6 +45,12 @@
         & .edit-comment-footer{
             @extend .comment-footer;
             justify-content: flex-end;
+        }
+        & .replyComments{
+            display: flex;
+            margin: 15px 0 0 0;
+            position: relative;
+            left: -12px;
         }
     } 
 }
