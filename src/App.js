@@ -45,6 +45,36 @@ function App() {
     });
   };
 
+  const updateReplyComment = (id, childCommentId, updatedComment) => {
+    let duplicateCommentArray = [...comments];
+    duplicateCommentArray.filter((comment) => {
+      if (comment.commentId === id) {
+        comment.replyComments.map((replyComment) => {
+          if (replyComment.commentId === childCommentId) {
+            replyComment.text = updatedComment;
+          }
+        });
+        return comment;
+      }
+    });
+  };
+
+  const deleteReplyComment = (parentCommentId, childCommentId) => {
+    let duplicateCommentArray = [...comments];
+    duplicateCommentArray.filter((comment) => {
+      if (comment.commentId === parentCommentId) {
+        let replyCommentsArray = [...comment.replyComments];
+        comment.replyComments.map((replyComment, index) => {
+          if (replyComment.commentId === childCommentId) {
+            replyCommentsArray.splice(index, 1);
+            comment.replyComments = [...replyCommentsArray];
+          }
+        });
+      }
+    });
+    setComments(duplicateCommentArray);
+  };
+
   useEffect(() => {
     getCommentsApi().then((data) => {
       setComments(data);
@@ -95,6 +125,8 @@ function App() {
                 commentsArray={comments}
                 onAddComment={setComments}
                 onUpdateComment={updateComment}
+                onUpdateReplyComment={updateReplyComment}
+                onDelteReplyComment={deleteReplyComment}
               />
             );
           })}
