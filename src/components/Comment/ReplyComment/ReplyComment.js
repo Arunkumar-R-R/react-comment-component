@@ -38,7 +38,7 @@ export const ReplyComment = (props) => {
   };
 
   const handleDelete = () => {
-    onReplyDelete(replyCommentId);
+    onReplyDelete(parentCommentId, replyCommentId);
     setIsOpen(false);
   };
 
