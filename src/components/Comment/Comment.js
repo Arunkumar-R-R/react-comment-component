@@ -173,9 +173,10 @@ const Comment = (prop) => {
             />
           )}
           {replyComments?.length > 0
-            ? replyComments.map((replyComment) => {
+            ? replyComments.map((replyComment, index) => {
                 return (
                   <ReplyComment
+                    key={index}
                     currentUser={currentUser}
                     parentCommentId={commentId}
                     onReplyUpdate={onUpdateReplyComment}
