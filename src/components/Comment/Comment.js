@@ -7,6 +7,11 @@ import Avatar from "../Avatar/Avatar";
 import Modal from "../Modal/Modal";
 import DeleteModal from "../Modal/DeleteModal/DeleteModal";
 import CommentForm from "../CommentForm/CommentForm";
+import { ReplyComment } from "./ReplyComment/ReplyComment";
+
+export const editCommentstyle = {
+  margin: "8px 0 0 0",
+};
 
 const Comment = (prop) => {
   const {
@@ -16,6 +21,8 @@ const Comment = (prop) => {
     onUpdateComment,
     onAddComment,
     commentsArray,
+    onUpdateReplyComment,
+    onDelteReplyComment,
   } = prop;
 
   let userId = data.userId;
@@ -34,10 +41,6 @@ const Comment = (prop) => {
   const [editedComment, SetEditedComment] = useState("");
   const [reset, setReset] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-
-  const editCommentstyle = {
-    margin: "8px 0 0 0",
-  };
 
   const showCommentBox = () => {
     setShowReply(!showReply);
@@ -171,27 +174,14 @@ const Comment = (prop) => {
           )}
           {replyComments?.length > 0
             ? replyComments.map((replyComment) => {
-                let commentId = replyComment.commentId;
-                let userName = replyComment.username;
-                let commentText = replyComment.text;
-
                 return (
-                  <div className="replyComments">
-                    <div className="comment-col1">
-                      <Avatar
-                        className={"mb-6"}
-                        id={commentId}
-                        username={userName}
-                      ></Avatar>
-                      <div className="divider">
-                        <div className="threadline"></div>
-                      </div>
-                    </div>
-                    <div className="comment-col2">
-                      <h6>{userName}</h6>
-                      <p>{commentText}</p>
-                    </div>
-                  </div>
+                  <ReplyComment
+                    currentUser={currentUser}
+                    parentCommentId={commentId}
+                    onReplyUpdate={onUpdateReplyComment}
+                    onReplyDelete={onDelteReplyComment}
+                    replyCommentData={replyComment}
+                  ></ReplyComment>
                 );
               })
             : ""}
