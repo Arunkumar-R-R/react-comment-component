@@ -3,6 +3,7 @@
 Modern Component's using React , SASS
 
 ## 1 - Interactive Comment Component
+comment component enables user to **add** , **delete** , **edit** their comments and can **respond** to the comments in comment section.
 
 [Demo](https://comment-component-demo.netlify.app/)
 
