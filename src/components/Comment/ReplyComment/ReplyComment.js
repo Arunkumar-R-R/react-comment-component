@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DeleteIcon, EditIcon } from "../../../utils/icon/icon";
+import { DeleteIcon, EditIcon, ReplyIcon } from "../../../utils/icon/icon";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
 import CommentForm from "../../CommentForm/CommentForm";
@@ -101,6 +101,14 @@ export const ReplyComment = (props) => {
           <>
             <p>{replyCommentText}</p>
             <div className="comment-footer">
+              <Button
+                type="gost"
+                size="sm"
+                leftIcon={<ReplyIcon color={"gost"} />}
+                disabled="disabled"
+              >
+                Reply
+              </Button>
               {currentUser === replyUserId && (
                 <>
                   <Button
