@@ -30,6 +30,14 @@
     &:active{
         @include darkenBackground ($primary-hover, 10);
     }
+    &.disabled-btn {
+        background-color: $primary-disabled ;
+        cursor: not-allowed;
+    
+        &:hover {
+            background-color: $primary-disabled ;
+        }
+    }
 }
 .secondary{
     background-color: $background;
@@ -39,7 +47,7 @@
     }
     &:active {
         @include darkenBackground ($background-dark,10);
-    }
+    } 
 }
 
 .gost{
@@ -50,13 +58,8 @@
     &:active {
         @include darkenBackground ($background-dark, 2);
     }
-}
-
-.disabled-btn{
-    background-color:$primary-disabled ;
-    cursor: not-allowed;
-    &:hover {
-        background-color: $primary-disabled ;
+    &.disabled-btn {
+        cursor: not-allowed;
     }
 }
 
