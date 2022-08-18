@@ -1,0 +1,20 @@
+@import './../../sass/sass-utils/color';
+@import './../../sass/sass-utils/variable';
+@import './../../sass/sass-utils/mixins';
+
+.tagContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    font-size: $smallest-text;
+    font-weight: $font-weight-medium;
+    padding: 2px 4px;
+    border-radius: $small-border-radius;
+    line-height: 15px;
+}
+
+.lightGrey{
+    color: $body-text-color;
+    background-color: lighten($color: $body-text-color, $amount: 63);
+}

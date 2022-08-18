@@ -5,6 +5,7 @@ import Button from "../../Button/Button";
 import CommentForm from "../../CommentForm/CommentForm";
 import DeleteModal from "../../Modal/DeleteModal/DeleteModal";
 import Modal from "../../Modal/Modal";
+import { Tag } from "../../Tag/Tag";
 import { editCommentstyle } from "../Comment";
 import "./../Comment.scss";
 
@@ -20,6 +21,11 @@ export const ReplyComment = (props) => {
   let replyUserName = replyCommentData.username;
   let replyCommentText = replyCommentData.text;
   let replyUserId = replyCommentData.userId;
+  let replyCommentsThread = replyCommentData?.replyCommentsThread;
+
+  let replyCommentsThreadLength = replyCommentsThread?.length
+    ? replyCommentsThread.length
+    : `0${replyCommentId}`;
 
   const [showReplyEditComment, setShowReplyEditComment] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -136,6 +142,68 @@ export const ReplyComment = (props) => {
             </div>
           </>
         )}{" "}
+        {replyCommentsThread?.length > 0
+          ? replyCommentsThread.map((replyCommentThread, index) => {
+              let threadCommentId = replyCommentThread.commentId;
+              let threadCommentUserName = replyCommentThread.username;
+              let threadCommentText = replyCommentThread.text;
+              return (
+                <>
+                  <div className="replyComments">
+                    <div className="comment-col1">
+                      <Avatar
+                        className={"mb-6"}
+                        id={threadCommentId}
+                        username={threadCommentUserName}
+                      ></Avatar>
+                      <div className="divider">
+                        <div className="threadline"></div>
+                      </div>
+                    </div>
+                    <div className="comment-col2">
+                      <h6>{threadCommentUserName}</h6>
+                      <p>{threadCommentText}</p>
+                      <div className="comment-footer">
+                        <Button
+                          type="gost"
+                          size="sm"
+                          leftIcon={<ReplyIcon color={"gost"} />}
+                          disabled="disabled"
+                        >
+                          Reply
+                        </Button>
+                        <Tag text={"Thread"} color={"lightGrey"}></Tag>
+                        {currentUser === replyUserId && (
+                          <>
+                            <Button
+                              type="gost"
+                              size="sm"
+                              className={"margin-left-4"}
+                              onClick={() => setIsOpen(true)}
+                              leftIcon={<DeleteIcon color={"gost"} />}
+                            >
+                              Delete
+                            </Button>
+                            <Button
+                              type="gost"
+                              size="sm"
+                              onClick={() =>
+                                setShowReplyEditComment(!showReplyEditComment)
+                              }
+                              className={"margin-left-4"}
+                              leftIcon={<EditIcon color={"gost"} />}
+                            >
+                              Edit
+                            </Button>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })
+          : ""}
       </div>
       {isOpen && (
         <Modal onClose={handleClose}>
