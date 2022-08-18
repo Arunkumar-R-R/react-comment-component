@@ -28,7 +28,6 @@ export const getComments = async () => {
           commentId: "1012",
           parentId: "101",
           text: "I agree 👍",
-          repliesThread: [],
         },
       ],
       upVoteCount: 0,
