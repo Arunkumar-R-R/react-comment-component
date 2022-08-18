@@ -12,6 +12,15 @@ export const getComments = async () => {
           commentId: "1011",
           parentId: "101",
           text: "Yes, It is a great library but Angular is best for enterprise level application",
+          replyCommentsThread: [
+            {
+              username: "Arun",
+              userId: "Arunak",
+              commentId: "10111",
+              parentId: "1011",
+              text: "Though Learning curve of angular is steeper than react",
+            },
+          ],
         },
         {
           username: "Robert De Niro",
@@ -19,6 +28,7 @@ export const getComments = async () => {
           commentId: "1012",
           parentId: "101",
           text: "I agree 👍",
+          repliesThread: [],
         },
       ],
       upVoteCount: 0,
