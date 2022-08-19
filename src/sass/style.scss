@@ -60,6 +60,11 @@
         background-color: $threadline-color;
         height: 100%;
     }
+    &:hover{
+        & .threadline{
+            background-color: $primary;
+        }
+    }
 }
 
 .mb-6{

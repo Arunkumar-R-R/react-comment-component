@@ -24,16 +24,18 @@
         & h6 {
             color: $title-text-color;
             font-size: $smallest-text;
-            font-weight: $font-weight-medium;
-            margin: 10px 0 0 0 ;
+            font-weight: 600;
+            line-height: 1.375rem;
         }
         & p {
-            margin: 8px 0 0 0;
             color: $body-text-color;
             font-size: $regular-text;
             white-space: pre-wrap;
             word-break: break-word;
             line-height: 20px;
+            @media screen and (max-width:425px){
+                font-size: $small-text;
+            }
         }
         & .comment-footer {
             display: flex;

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const Avatar = (prop) => {
-  const { username, className, id } = prop;
+  const { username, className, id, size } = prop;
 
   let name = username;
   let nameSplit = name.split(" ");
@@ -16,7 +16,7 @@ const Avatar = (prop) => {
   }
 
   const canvasCreater = (canvas) => {
-    canvas.style.borderRadius = "50px";
+    canvas.style.borderRadius = "5px";
     let context = canvas.getContext("2d");
     let canvasWidth = canvas.getAttribute("width");
     let canvasHeight = canvas.getAttribute("height");
@@ -33,6 +33,13 @@ const Avatar = (prop) => {
     canvasCreater(canvas);
   });
 
-  return <canvas className={className} id={id} width="35" height="35"></canvas>;
+  return (
+    <canvas
+      className={className}
+      id={id}
+      width={`${size}`}
+      height={`${size}`}
+    ></canvas>
+  );
 };
 export default Avatar;
