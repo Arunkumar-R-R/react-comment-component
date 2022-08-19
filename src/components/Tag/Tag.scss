@@ -12,9 +12,11 @@
     padding: 2px 4px;
     border-radius: $small-border-radius;
     line-height: 15px;
+    cursor: context-menu;
+    user-select: none;
 }
 
 .lightGrey{
     color: $body-text-color;
-    background-color: lighten($color: $body-text-color, $amount: 63);
+    background-color: lighten($color: $body-text-color, $amount: 60);
 }
