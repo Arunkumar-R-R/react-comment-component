@@ -133,7 +133,7 @@ const Comment = (prop) => {
                   type="gost"
                   size="sm"
                   onClick={showCommentBox}
-                  leftIcon={<ReplyIcon color={"gost"} />}
+                  // leftIcon={<ReplyIcon color={"gost"} />}
                 >
                   Reply
                 </Button>
@@ -144,7 +144,7 @@ const Comment = (prop) => {
                       size="sm"
                       className={"margin-left-4"}
                       onClick={() => setIsOpen(true)}
-                      leftIcon={<DeleteIcon color={"gost"} />}
+                      // leftIcon={<DeleteIcon color={"gost"} />}
                     >
                       Delete
                     </Button>
@@ -153,7 +153,7 @@ const Comment = (prop) => {
                       size="sm"
                       onClick={() => setShowEditComment(!showEditComment)}
                       className={"margin-left-4"}
-                      leftIcon={<EditIcon color={"gost"} />}
+                      // leftIcon={<EditIcon color={"gost"} />}
                     >
                       Edit
                     </Button>
