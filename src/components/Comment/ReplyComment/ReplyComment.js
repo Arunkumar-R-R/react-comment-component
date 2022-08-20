@@ -64,6 +64,7 @@ export const ReplyComment = (props) => {
     <div className="replyComments">
       <div className="comment-col1">
         <Avatar
+          size={35}
           className={"mb-6"}
           id={replyCommentId}
           username={replyUserName}
@@ -139,6 +140,9 @@ export const ReplyComment = (props) => {
                   </Button>
                 </>
               )}
+              {replyCommentsThread?.length > 0 && (
+                <Tag text={"Thread"} color={"lightGrey"}></Tag>
+              )}
             </div>
           </>
         )}{" "}
@@ -152,6 +156,7 @@ export const ReplyComment = (props) => {
                   <div className="replyComments">
                     <div className="comment-col1">
                       <Avatar
+                        size={30}
                         className={"mb-6"}
                         id={threadCommentId}
                         username={threadCommentUserName}
@@ -172,7 +177,6 @@ export const ReplyComment = (props) => {
                         >
                           Reply
                         </Button>
-                        <Tag text={"Thread"} color={"lightGrey"}></Tag>
                         {currentUser === replyUserId && (
                           <>
                             <Button

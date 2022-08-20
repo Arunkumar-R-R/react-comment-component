@@ -85,6 +85,7 @@ const Comment = (prop) => {
       <div className="comment">
         <div className="comment-col1">
           <Avatar
+            size={35}
             className={"mb-6"}
             id={commentId}
             username={userName}
