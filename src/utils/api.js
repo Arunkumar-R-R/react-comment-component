@@ -20,6 +20,13 @@ export const getComments = async () => {
               parentId: "1011",
               text: "Though Learning curve of angular is steeper than react",
             },
+            {
+              username: "Koti",
+              userId: "Kotis",
+              commentId: "10112",
+              parentId: "1011",
+              text: "I think both of them have their own trade off's",
+            },
           ],
         },
         {
