@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { DeleteIcon, EditIcon, ReplyIcon } from "../../../utils/icon/icon";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
+import CommentBoxContainer from "../../CommentBoxContainer/CommentBoxContainer";
 import CommentForm from "../../CommentForm/CommentForm";
 import DeleteModal from "../../Modal/DeleteModal/DeleteModal";
 import Modal from "../../Modal/Modal";
 import { Tag } from "../../Tag/Tag";
 import { editCommentstyle } from "../Comment";
-import "./../Comment.scss";
 
 export const ReplyComment = (props) => {
   let {
@@ -32,6 +32,7 @@ export const ReplyComment = (props) => {
   const [reset, setReset] = useState(false);
   const [editedReplyComment, SetEditedReplyComment] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [showReply, setShowReply] = useState(false);
 
   const handleReplyEdit = (id, commentId) => {
     onReplyUpdate(id, commentId, editedReplyComment);
@@ -46,6 +47,14 @@ export const ReplyComment = (props) => {
   const handleDelete = () => {
     onReplyDelete(parentCommentId, replyCommentId);
     setIsOpen(false);
+  };
+
+  const showCommentBox = () => {
+    setShowReply(!showReply);
+  };
+
+  const closeCommentBox = () => {
+    setShowReply(false);
   };
 
   useEffect(() => {
@@ -64,6 +73,7 @@ export const ReplyComment = (props) => {
     <div className="replyComments">
       <div className="comment-col1">
         <Avatar
+          size={35}
           className={"mb-6"}
           id={replyCommentId}
           username={replyUserName}
@@ -107,12 +117,7 @@ export const ReplyComment = (props) => {
           <>
             <p>{replyCommentText}</p>
             <div className="comment-footer">
-              <Button
-                type="gost"
-                size="sm"
-                leftIcon={<ReplyIcon color={"gost"} />}
-                disabled="disabled"
-              >
+              <Button type="gost" size="sm" onClick={showCommentBox}>
                 Reply
               </Button>
               {currentUser === replyUserId && (
@@ -122,7 +127,6 @@ export const ReplyComment = (props) => {
                     size="sm"
                     className={"margin-left-4"}
                     onClick={() => setIsOpen(true)}
-                    leftIcon={<DeleteIcon color={"gost"} />}
                   >
                     Delete
                   </Button>
@@ -133,11 +137,13 @@ export const ReplyComment = (props) => {
                       setShowReplyEditComment(!showReplyEditComment)
                     }
                     className={"margin-left-4"}
-                    leftIcon={<EditIcon color={"gost"} />}
                   >
                     Edit
                   </Button>
                 </>
+              )}
+              {replyCommentsThread?.length > 0 && (
+                <Tag text={"Thread"} color={"lightGrey"}></Tag>
               )}
             </div>
           </>
@@ -149,9 +155,10 @@ export const ReplyComment = (props) => {
               let threadCommentText = replyCommentThread.text;
               return (
                 <>
-                  <div className="replyComments">
+                  <div className="threadComments">
                     <div className="comment-col1">
                       <Avatar
+                        size={30}
                         className={"mb-6"}
                         id={threadCommentId}
                         username={threadCommentUserName}
@@ -164,15 +171,9 @@ export const ReplyComment = (props) => {
                       <h6>{threadCommentUserName}</h6>
                       <p>{threadCommentText}</p>
                       <div className="comment-footer">
-                        <Button
-                          type="gost"
-                          size="sm"
-                          leftIcon={<ReplyIcon color={"gost"} />}
-                          disabled="disabled"
-                        >
+                        <Button type="gost" size="sm" disabled="disabled">
                           Reply
                         </Button>
-                        <Tag text={"Thread"} color={"lightGrey"}></Tag>
                         {currentUser === replyUserId && (
                           <>
                             <Button
@@ -180,7 +181,6 @@ export const ReplyComment = (props) => {
                               size="sm"
                               className={"margin-left-4"}
                               onClick={() => setIsOpen(true)}
-                              leftIcon={<DeleteIcon color={"gost"} />}
                             >
                               Delete
                             </Button>
@@ -191,7 +191,6 @@ export const ReplyComment = (props) => {
                                 setShowReplyEditComment(!showReplyEditComment)
                               }
                               className={"margin-left-4"}
-                              leftIcon={<EditIcon color={"gost"} />}
                             >
                               Edit
                             </Button>
@@ -205,6 +204,17 @@ export const ReplyComment = (props) => {
             })
           : ""}
       </div>
+      {/* {showReply && (
+        <CommentBoxContainer
+          id={replyUserId}
+          replyCommentsLength={replyCommentsLength}
+          commentId={replyCommentId}
+          userId={currentUser}
+          onCancel={closeCommentBox}
+          commentsArray={commentsArray}
+          onRespond={onAddComment}
+        />
+      )} */}
       {isOpen && (
         <Modal onClose={handleClose}>
           <DeleteModal
