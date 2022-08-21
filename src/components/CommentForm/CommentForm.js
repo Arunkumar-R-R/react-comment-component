@@ -46,6 +46,8 @@ const CommentForm = forwardRef((props, ref) => {
   }, [isReset, isEdit, setReset, id, getData]);
 
   useEffect(() => {
+    let totalLength = inputRef.current.value.length;
+    inputRef.current.setSelectionRange(totalLength, totalLength);
     inputRef.current.focus();
     inputRef.current.style.height = "auto";
     inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;

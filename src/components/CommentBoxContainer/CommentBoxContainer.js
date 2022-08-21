@@ -26,6 +26,7 @@ const CommentBoxContainer = (props) => {
       commentId: replyCommentsLength + commentId,
       upVoteCount: 0,
     };
+
     //deep copy of commentsArray
     const commentsList = JSON.parse(JSON.stringify(commentsArray));
     commentsList.filter((comment) => {
@@ -37,6 +38,20 @@ const CommentBoxContainer = (props) => {
           comment.replyComments = [data];
         }
         return comment;
+      } else {
+        comment.replyComments?.filter((replyComments) => {
+          if (replyComments.commentId === commentId) {
+            if (replyComments.replyCommentsThread) {
+              let replyThreadComments = replyComments.replyCommentsThread;
+              replyComments.replyCommentsThread = [
+                ...replyThreadComments,
+                data,
+              ];
+            } else {
+              replyComments.replyCommentsThread = [data];
+            }
+          }
+        });
       }
     });
     onRespond(commentsList);
@@ -54,12 +69,6 @@ const CommentBoxContainer = (props) => {
 
   return (
     <div className="wrapper">
-      <div className="col-1">
-        <div className="divider">
-          <div className="threadline"></div>
-        </div>
-      </div>
-
       <div className="commentBoxContainer">
         <CommentForm
           getData={SetCurrentComment}

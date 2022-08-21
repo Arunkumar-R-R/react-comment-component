@@ -1,79 +1,82 @@
-@import './sass-utils/Variable';
-@import './sass-utils/mixins';
-@import './sass-utils/reset';
-@import './sass-utils/color';
+@import "./sass-utils/Variable";
+@import "./sass-utils/mixins";
+@import "./sass-utils/reset";
+@import "./sass-utils/color";
 
-*{
-    font-family: $font-family !important;
-    font-size: $base-size ;
-    box-sizing: border-box;
+* {
+  font-family: $font-family !important;
+  font-size: $base-size;
+  box-sizing: border-box;
 }
 
-.flex{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
-.right-spacing-12{
-    margin: 0 12px 0 0;
+.right-spacing-12 {
+  margin: 0 12px 0 0;
 }
 
-.app{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .comment-area{
-        width: 600px;
-        margin: 40px auto;
-        .title{
-            font-size: $large-text;
-        }
-        .initial-comment{
-            margin: 16px 0 8px 0;
-            max-width:600px;
-            width: 100%;
-        }
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .comment-area {
+    width: 600px;
+    margin: 40px auto;
+    .title {
+      font-size: $large-text;
     }
-
+    .initial-comment {
+      margin: 16px 0 8px 0;
+      max-width: 600px;
+      width: 100%;
+    }
+  }
 }
 .commentbox-footer {
-    margin: 16px 0 0 0;
-    display: flex;
-    justify-content: flex-end;
+  margin: 16px 0 0 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.margin-left-4{
-    margin: 0 0 0 8px;
+.margin-left-4 {
+  margin: 0 0 0 8px;
 }
 
 .divider {
-    display: flex;
-    flex-flow: column nowrap;
-    padding: 0 7px;
-    width: 16px;
-    // margin: 0 16px 0 0;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 0 7px;
+  width: 16px;
+  height: 100%;
+
+  & .threadline {
+    width: 2px;
+    background-color: $threadline-color;
     height: 100%;
-
+  }
+  &:hover {
     & .threadline {
-        width: 2px;
-        background-color: $threadline-color;
-        height: 100%;
+      background-color: $primary;
     }
+  }
 }
 
-.mb-6{
-    margin: 0 0 6px 0;
+.mb-6 {
+  margin: 0 0 6px 0;
 }
 
-.comment-label{
-    font-size: $smallest-text;
-    color: $body-text-color;
-    margin: 0 0 4px 0;
+.comment-label {
+  font-size: $smallest-text;
+  color: $body-text-color;
+  margin: 0 0 4px 0;
 }
 
-@media  (max-width:630px) {
-    .comment-area {
-        width: 90% !important;
-    }
+@media (max-width: 630px) {
+  .comment-area {
+    width: 90% !important;
+  }
 }

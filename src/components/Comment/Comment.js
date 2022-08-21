@@ -1,13 +1,13 @@
-import { DeleteIcon, EditIcon, ReplyIcon } from "../../utils/icon/icon";
 import Button from "../Button/Button";
 import "./Comment.scss";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommentBoxContainer from "../CommentBoxContainer/CommentBoxContainer";
 import Avatar from "../Avatar/Avatar";
 import Modal from "../Modal/Modal";
 import DeleteModal from "../Modal/DeleteModal/DeleteModal";
 import CommentForm from "../CommentForm/CommentForm";
 import { ReplyComment } from "./ReplyComment/ReplyComment";
+import { commentContext } from "../../App";
 
 export const editCommentstyle = {
   margin: "8px 0 0 0",
@@ -16,13 +16,14 @@ export const editCommentstyle = {
 const Comment = (prop) => {
   const {
     data,
-    currentUser,
     onDelete,
     onUpdateComment,
     onAddComment,
     commentsArray,
     onUpdateReplyComment,
     onDelteReplyComment,
+    onDeleteThreadComment,
+    onUpdateThreadComment,
   } = prop;
 
   let userId = data.userId;
@@ -34,6 +35,8 @@ const Comment = (prop) => {
   let replyCommentsLength = replyComments?.length
     ? replyComments.length
     : `0${commentId}`;
+
+  const currentUser = useContext(commentContext);
 
   const [showReply, setShowReply] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +88,7 @@ const Comment = (prop) => {
       <div className="comment">
         <div className="comment-col1">
           <Avatar
+            size={30}
             className={"mb-6"}
             id={commentId}
             username={userName}
@@ -132,7 +136,7 @@ const Comment = (prop) => {
                   type="gost"
                   size="sm"
                   onClick={showCommentBox}
-                  leftIcon={<ReplyIcon color={"gost"} />}
+                  // leftIcon={<ReplyIcon color={"gost"} />}
                 >
                   Reply
                 </Button>
@@ -143,7 +147,7 @@ const Comment = (prop) => {
                       size="sm"
                       className={"margin-left-4"}
                       onClick={() => setIsOpen(true)}
-                      leftIcon={<DeleteIcon color={"gost"} />}
+                      // leftIcon={<DeleteIcon color={"gost"} />}
                     >
                       Delete
                     </Button>
@@ -152,7 +156,6 @@ const Comment = (prop) => {
                       size="sm"
                       onClick={() => setShowEditComment(!showEditComment)}
                       className={"margin-left-4"}
-                      leftIcon={<EditIcon color={"gost"} />}
                     >
                       Edit
                     </Button>
@@ -177,11 +180,14 @@ const Comment = (prop) => {
                 return (
                   <ReplyComment
                     key={index}
-                    currentUser={currentUser}
+                    commentsArray={commentsArray}
                     parentCommentId={commentId}
                     onReplyUpdate={onUpdateReplyComment}
                     onReplyDelete={onDelteReplyComment}
                     replyCommentData={replyComment}
+                    onRespond={onAddComment}
+                    onUpdateThreadComment={onUpdateThreadComment}
+                    onDeleteThreadComment={onDeleteThreadComment}
                   ></ReplyComment>
                 );
               })

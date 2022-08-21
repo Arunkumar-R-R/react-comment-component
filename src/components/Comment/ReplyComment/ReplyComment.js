@@ -1,21 +1,26 @@
+import { useContext } from "react";
 import { useEffect, useState } from "react";
-import { DeleteIcon, EditIcon, ReplyIcon } from "../../../utils/icon/icon";
+import { commentContext } from "../../../App";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
+import CommentBoxContainer from "../../CommentBoxContainer/CommentBoxContainer";
 import CommentForm from "../../CommentForm/CommentForm";
 import DeleteModal from "../../Modal/DeleteModal/DeleteModal";
 import Modal from "../../Modal/Modal";
 import { Tag } from "../../Tag/Tag";
 import { editCommentstyle } from "../Comment";
-import "./../Comment.scss";
+import ThreadComment from "../ThreadComment/ThreadComment";
 
 export const ReplyComment = (props) => {
   let {
     replyCommentData,
     parentCommentId,
     onReplyUpdate,
-    currentUser,
     onReplyDelete,
+    commentsArray,
+    onRespond,
+    onUpdateThreadComment,
+    onDeleteThreadComment,
   } = props;
   let replyCommentId = replyCommentData.commentId;
   let replyUserName = replyCommentData.username;
@@ -27,14 +32,17 @@ export const ReplyComment = (props) => {
     ? replyCommentsThread.length
     : `0${replyCommentId}`;
 
+  const currentUser = useContext(commentContext);
+
   const [showReplyEditComment, setShowReplyEditComment] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [reset, setReset] = useState(false);
   const [editedReplyComment, SetEditedReplyComment] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [showReply, setShowReply] = useState(false);
 
-  const handleReplyEdit = (id, commentId) => {
-    onReplyUpdate(id, commentId, editedReplyComment);
+  const handleReplyEdit = () => {
+    onReplyUpdate(parentCommentId, replyCommentId, editedReplyComment);
     setReset(true);
     setShowReplyEditComment(false);
   };
@@ -46,6 +54,14 @@ export const ReplyComment = (props) => {
   const handleDelete = () => {
     onReplyDelete(parentCommentId, replyCommentId);
     setIsOpen(false);
+  };
+
+  const showCommentBox = () => {
+    setShowReply(!showReply);
+  };
+
+  const closeCommentBox = () => {
+    setShowReply(false);
   };
 
   useEffect(() => {
@@ -64,6 +80,7 @@ export const ReplyComment = (props) => {
     <div className="replyComments">
       <div className="comment-col1">
         <Avatar
+          size={30}
           className={"mb-6"}
           id={replyCommentId}
           username={replyUserName}
@@ -96,7 +113,7 @@ export const ReplyComment = (props) => {
               <Button
                 type="primary"
                 className={"margin-left-4"}
-                onClick={() => handleReplyEdit(parentCommentId, replyCommentId)}
+                onClick={handleReplyEdit}
                 {...(isDisabled ? { disabled: "disabled" } : "")}
               >
                 Save
@@ -107,12 +124,7 @@ export const ReplyComment = (props) => {
           <>
             <p>{replyCommentText}</p>
             <div className="comment-footer">
-              <Button
-                type="gost"
-                size="sm"
-                leftIcon={<ReplyIcon color={"gost"} />}
-                disabled="disabled"
-              >
+              <Button type="gost" size="sm" onClick={showCommentBox}>
                 Reply
               </Button>
               {currentUser === replyUserId && (
@@ -122,7 +134,6 @@ export const ReplyComment = (props) => {
                     size="sm"
                     className={"margin-left-4"}
                     onClick={() => setIsOpen(true)}
-                    leftIcon={<DeleteIcon color={"gost"} />}
                   >
                     Delete
                   </Button>
@@ -133,74 +144,52 @@ export const ReplyComment = (props) => {
                       setShowReplyEditComment(!showReplyEditComment)
                     }
                     className={"margin-left-4"}
-                    leftIcon={<EditIcon color={"gost"} />}
                   >
                     Edit
                   </Button>
                 </>
               )}
+              {replyCommentsThread?.length > 0 && (
+                <Tag text={"Thread"} color={"lightGrey"}></Tag>
+              )}
             </div>
           </>
         )}{" "}
+        {showReply && (
+          <CommentBoxContainer
+            id={replyUserId}
+            replyCommentsLength={replyCommentsThreadLength}
+            commentId={replyCommentId}
+            userId={currentUser}
+            onCancel={closeCommentBox}
+            commentsArray={commentsArray}
+            onRespond={onRespond}
+          />
+        )}
         {replyCommentsThread?.length > 0
           ? replyCommentsThread.map((replyCommentThread, index) => {
-              let threadCommentId = replyCommentThread.commentId;
-              let threadCommentUserName = replyCommentThread.username;
-              let threadCommentText = replyCommentThread.text;
               return (
-                <>
-                  <div className="replyComments">
-                    <div className="comment-col1">
-                      <Avatar
-                        className={"mb-6"}
-                        id={threadCommentId}
-                        username={threadCommentUserName}
-                      ></Avatar>
-                      <div className="divider">
-                        <div className="threadline"></div>
-                      </div>
-                    </div>
-                    <div className="comment-col2">
-                      <h6>{threadCommentUserName}</h6>
-                      <p>{threadCommentText}</p>
-                      <div className="comment-footer">
-                        <Button
-                          type="gost"
-                          size="sm"
-                          leftIcon={<ReplyIcon color={"gost"} />}
-                          disabled="disabled"
-                        >
-                          Reply
-                        </Button>
-                        <Tag text={"Thread"} color={"lightGrey"}></Tag>
-                        {currentUser === replyUserId && (
-                          <>
-                            <Button
-                              type="gost"
-                              size="sm"
-                              className={"margin-left-4"}
-                              onClick={() => setIsOpen(true)}
-                              leftIcon={<DeleteIcon color={"gost"} />}
-                            >
-                              Delete
-                            </Button>
-                            <Button
-                              type="gost"
-                              size="sm"
-                              onClick={() =>
-                                setShowReplyEditComment(!showReplyEditComment)
-                              }
-                              className={"margin-left-4"}
-                              leftIcon={<EditIcon color={"gost"} />}
-                            >
-                              Edit
-                            </Button>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </>
+                <ThreadComment
+                  key={index}
+                  threadData={replyCommentThread}
+                  parentCommentId={replyCommentId}
+                  onUpdateThreadComment={onUpdateThreadComment}
+                  onDeleteThreadComment={onDeleteThreadComment}
+                >
+                  <>
+                    {showReply && (
+                      <CommentBoxContainer
+                        id={replyUserId}
+                        replyCommentsLength={replyCommentsThreadLength}
+                        commentId={replyCommentId}
+                        userId={currentUser}
+                        onCancel={closeCommentBox}
+                        commentsArray={commentsArray}
+                        onRespond={onRespond}
+                      />
+                    )}
+                  </>
+                </ThreadComment>
               );
             })
           : ""}

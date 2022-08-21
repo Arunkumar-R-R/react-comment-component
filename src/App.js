@@ -4,6 +4,9 @@ import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
 import { useEffect, useState } from "react";
 import CommentForm from "./components/CommentForm/CommentForm";
+import { createContext } from "react";
+
+export const commentContext = createContext();
 
 function App() {
   const [comments, setComments] = useState([]);
@@ -75,6 +78,45 @@ function App() {
     setComments(duplicateCommentArray);
   };
 
+  const deleteThreadComment = (parentCommentId, childCommentId) => {
+    let duplicateCommentArray = [...comments];
+    duplicateCommentArray.map((comment) => {
+      comment.replyComments?.map((replyComment) => {
+        if (replyComment.commentId === parentCommentId) {
+          let threadCommentsArray = [...replyComment.replyCommentsThread];
+          replyComment.replyCommentsThread.map((replyCommentThread, index) => {
+            if (replyCommentThread.commentId === childCommentId) {
+              threadCommentsArray.splice(index, 1);
+              replyComment.replyCommentsThread = [...threadCommentsArray];
+            }
+          });
+        }
+      });
+    });
+    setComments(duplicateCommentArray);
+  };
+
+  const updateThreadComment = (
+    parentCommentId,
+    childCommentId,
+    updatedComment
+  ) => {
+    let duplicateCommentArray = [...comments];
+
+    duplicateCommentArray.map((comment) => {
+      comment.replyComments?.map((replyComment) => {
+        if (replyComment.commentId === parentCommentId) {
+          replyComment.replyCommentsThread.map((replyCommentThread) => {
+            if (replyCommentThread.commentId === childCommentId) {
+              replyCommentThread.text = updatedComment;
+            }
+          });
+        }
+      });
+    });
+    setComments(duplicateCommentArray);
+  };
+
   useEffect(() => {
     getCommentsApi().then((data) => {
       setComments(data);
@@ -114,22 +156,25 @@ function App() {
           </div>
         </div>
         <div className="comment-section">
-          {comments.map((comment, index) => {
-            return (
-              <Comment
-                key={index}
-                currentUser={currentUserId}
-                onDelete={deleteComment}
-                id={index}
-                data={comment}
-                commentsArray={comments}
-                onAddComment={setComments}
-                onUpdateComment={updateComment}
-                onUpdateReplyComment={updateReplyComment}
-                onDelteReplyComment={deleteReplyComment}
-              />
-            );
-          })}
+          <commentContext.Provider value={currentUserId}>
+            {comments.map((comment, index) => {
+              return (
+                <Comment
+                  key={index}
+                  onDelete={deleteComment}
+                  id={index}
+                  data={comment}
+                  commentsArray={comments}
+                  onAddComment={setComments}
+                  onUpdateComment={updateComment}
+                  onUpdateReplyComment={updateReplyComment}
+                  onDelteReplyComment={deleteReplyComment}
+                  onDeleteThreadComment={deleteThreadComment}
+                  onUpdateThreadComment={updateThreadComment}
+                />
+              );
+            })}
+          </commentContext.Provider>
         </div>
       </div>
     </div>
