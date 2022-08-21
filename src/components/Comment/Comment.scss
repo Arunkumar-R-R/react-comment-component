@@ -24,7 +24,7 @@
     & h6 {
       color: $title-text-color;
       font-size: $small-text;
-      font-weight: 600;
+      font-weight: $font-weight-medium;
       line-height: 1.375rem;
     }
     & p {
