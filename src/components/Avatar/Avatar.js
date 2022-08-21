@@ -22,7 +22,11 @@ const Avatar = (prop) => {
     let canvasHeight = canvas.getAttribute("height");
     context.fillStyle = "lightgrey";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    context.font = "14px Inter";
+    if (size < 30) {
+      context.font = "12px Inter";
+    } else {
+      context.font = "14px Inter";
+    }
     context.textAlign = "center";
     context.fillStyle = "#000";
     context.fillText(initials, canvasWidth / 2, canvasHeight / 1.5);

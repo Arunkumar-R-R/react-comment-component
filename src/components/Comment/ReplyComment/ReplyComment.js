@@ -73,7 +73,7 @@ export const ReplyComment = (props) => {
     <div className="replyComments">
       <div className="comment-col1">
         <Avatar
-          size={35}
+          size={30}
           className={"mb-6"}
           id={replyCommentId}
           username={replyUserName}
@@ -158,7 +158,7 @@ export const ReplyComment = (props) => {
                   <div className="threadComments">
                     <div className="comment-col1">
                       <Avatar
-                        size={30}
+                        size={25}
                         className={"mb-6"}
                         id={threadCommentId}
                         username={threadCommentUserName}
