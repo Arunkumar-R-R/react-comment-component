@@ -41,8 +41,8 @@ export const ReplyComment = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showReply, setShowReply] = useState(false);
 
-  const handleReplyEdit = (id, commentId) => {
-    onReplyUpdate(id, commentId, editedReplyComment);
+  const handleReplyEdit = () => {
+    onReplyUpdate(parentCommentId, replyCommentId, editedReplyComment);
     setReset(true);
     setShowReplyEditComment(false);
   };
@@ -113,7 +113,7 @@ export const ReplyComment = (props) => {
               <Button
                 type="primary"
                 className={"margin-left-4"}
-                onClick={() => handleReplyEdit(parentCommentId, replyCommentId)}
+                onClick={handleReplyEdit}
                 {...(isDisabled ? { disabled: "disabled" } : "")}
               >
                 Save

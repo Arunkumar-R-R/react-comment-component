@@ -39,7 +39,7 @@ const CommentBoxContainer = (props) => {
         }
         return comment;
       } else {
-        comment?.replyComments?.filter((replyComments) => {
+        comment.replyComments?.filter((replyComments) => {
           if (replyComments.commentId === commentId) {
             if (replyComments.replyCommentsThread) {
               let replyThreadComments = replyComments.replyCommentsThread;
