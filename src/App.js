@@ -96,7 +96,26 @@ function App() {
     setComments(duplicateCommentArray);
   };
 
-  const updateThreadComment = () => {};
+  const updateThreadComment = (
+    parentCommentId,
+    childCommentId,
+    updatedComment
+  ) => {
+    let duplicateCommentArray = [...comments];
+
+    duplicateCommentArray.map((comment) => {
+      comment.replyComments?.map((replyComment) => {
+        if (replyComment.commentId === parentCommentId) {
+          replyComment.replyCommentsThread.map((replyCommentThread) => {
+            if (replyCommentThread.commentId === childCommentId) {
+              replyCommentThread.text = updatedComment;
+            }
+          });
+        }
+      });
+    });
+    setComments(duplicateCommentArray);
+  };
 
   useEffect(() => {
     getCommentsApi().then((data) => {
