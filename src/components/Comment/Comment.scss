@@ -51,19 +51,20 @@
     }
     & .replyComments {
       display: flex;
-      margin: 15px 0 0 0;
+      margin: 15px 0 0 -5px;
       position: relative;
-      left: -12px;
+      left: -10px;
       width: 100%;
       & .threadComments {
         @extend .replyComments;
-        margin: 0;
+        margin: 0 0 0 -5px;
         & .comment-col2 {
           margin-bottom: 8px;
         }
       }
       & .threadComments:nth-of-type(2) {
         @extend .replyComments;
+        margin-bottom: 0;
       }
     }
   }
