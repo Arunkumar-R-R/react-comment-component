@@ -78,6 +78,45 @@ function App() {
     setComments(duplicateCommentArray);
   };
 
+  const deleteThreadComment = (parentCommentId, childCommentId) => {
+    let duplicateCommentArray = [...comments];
+    duplicateCommentArray.map((comment) => {
+      comment.replyComments?.map((replyComment) => {
+        if (replyComment.commentId === parentCommentId) {
+          let threadCommentsArray = [...replyComment.replyCommentsThread];
+          replyComment.replyCommentsThread.map((replyCommentThread, index) => {
+            if (replyCommentThread.commentId === childCommentId) {
+              threadCommentsArray.splice(index, 1);
+              replyComment.replyCommentsThread = [...threadCommentsArray];
+            }
+          });
+        }
+      });
+    });
+    setComments(duplicateCommentArray);
+  };
+
+  const updateThreadComment = (
+    parentCommentId,
+    childCommentId,
+    updatedComment
+  ) => {
+    let duplicateCommentArray = [...comments];
+
+    duplicateCommentArray.map((comment) => {
+      comment.replyComments?.map((replyComment) => {
+        if (replyComment.commentId === parentCommentId) {
+          replyComment.replyCommentsThread.map((replyCommentThread) => {
+            if (replyCommentThread.commentId === childCommentId) {
+              replyCommentThread.text = updatedComment;
+            }
+          });
+        }
+      });
+    });
+    setComments(duplicateCommentArray);
+  };
+
   useEffect(() => {
     getCommentsApi().then((data) => {
       setComments(data);
@@ -130,6 +169,8 @@ function App() {
                   onUpdateComment={updateComment}
                   onUpdateReplyComment={updateReplyComment}
                   onDelteReplyComment={deleteReplyComment}
+                  onDeleteThreadComment={deleteThreadComment}
+                  onUpdateThreadComment={updateThreadComment}
                 />
               );
             })}

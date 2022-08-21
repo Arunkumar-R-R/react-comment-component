@@ -22,6 +22,8 @@ const Comment = (prop) => {
     commentsArray,
     onUpdateReplyComment,
     onDelteReplyComment,
+    onDeleteThreadComment,
+    onUpdateThreadComment,
   } = prop;
 
   let userId = data.userId;
@@ -178,12 +180,14 @@ const Comment = (prop) => {
                 return (
                   <ReplyComment
                     key={index}
-                    currentUser={currentUser}
                     commentsArray={commentsArray}
                     parentCommentId={commentId}
                     onReplyUpdate={onUpdateReplyComment}
                     onReplyDelete={onDelteReplyComment}
                     replyCommentData={replyComment}
+                    onRespond={onAddComment}
+                    onUpdateThreadComment={onUpdateThreadComment}
+                    onDeleteThreadComment={onDeleteThreadComment}
                   ></ReplyComment>
                 );
               })
