@@ -30,6 +30,16 @@ const ThreadComment = (props) => {
   const [showThreadEditComment, setShowThreadEditComment] = useState(false);
   const [editedThreadComment, SetEditedThreadComment] = useState("");
 
+  const handleThreadCommentEdit = () => {
+    onUpdateThreadComment(
+      parentCommentId,
+      threadCommentId,
+      editedThreadComment
+    );
+    setReset(true);
+    setShowThreadEditComment(false);
+  };
+
   const handleClose = () => {
     setIsOpen(false);
   };
@@ -91,7 +101,7 @@ const ThreadComment = (props) => {
                 <Button
                   type="primary"
                   className={"margin-left-4"}
-                  onClick={() => onUpdateThreadComment()}
+                  onClick={handleThreadCommentEdit}
                   {...(isDisabled ? { disabled: "disabled" } : "")}
                 >
                   Save
