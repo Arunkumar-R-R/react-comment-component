@@ -54,12 +54,6 @@ const CommentBoxContainer = (props) => {
 
   return (
     <div className="wrapper">
-      <div className="col-1">
-        <div className="divider">
-          <div className="threadline"></div>
-        </div>
-      </div>
-
       <div className="commentBoxContainer">
         <CommentForm
           getData={SetCurrentComment}
