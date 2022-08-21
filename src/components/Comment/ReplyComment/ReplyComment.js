@@ -19,6 +19,8 @@ export const ReplyComment = (props) => {
     onReplyDelete,
     commentsArray,
     onRespond,
+    onUpdateThreadComment,
+    onDeleteThreadComment,
   } = props;
   let replyCommentId = replyCommentData.commentId;
   let replyUserName = replyCommentData.username;
@@ -167,7 +169,13 @@ export const ReplyComment = (props) => {
         {replyCommentsThread?.length > 0
           ? replyCommentsThread.map((replyCommentThread, index) => {
               return (
-                <ThreadComment key={index} threadData={replyCommentThread}>
+                <ThreadComment
+                  key={index}
+                  threadData={replyCommentThread}
+                  parentCommentId={replyCommentId}
+                  onUpdateThreadComment={onUpdateThreadComment}
+                  onDeleteThreadComment={onDeleteThreadComment}
+                >
                   <>
                     {showReply && (
                       <CommentBoxContainer
