@@ -1,20 +1,20 @@
-@import './../../sass/sass-utils/color';
-@import './../../sass/sass-utils/variable';
-@import './../../sass/sass-utils/mixins';
+@import "./../../sass/sass-utils/color";
+@import "./../../sass/sass-utils/variable";
+@import "./../../sass/sass-utils/mixins";
 
-.wrapper{
-    margin: 16px 0 0 0;
+.wrapper {
+  margin: 16px 0 8px 8px;
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  left: -16px;
+  .col-1 {
+    margin: 0 14px 0 0;
+  }
+  .commentBoxContainer {
     display: flex;
-    flex-flow: row nowrap;
-    position: relative;
-    left: -16px;
-    .col-1{
-       margin: 0 14px 0 0; 
-    }
-    .commentBoxContainer {
-        display: flex;
-        flex-flow: column nowrap;
-        max-width: 700px;
-        width: 100%;
-    }
+    flex-flow: column nowrap;
+    max-width: 700px;
+    width: 100%;
+  }
 }

@@ -1,83 +1,84 @@
-@import './../../sass/sass-utils/color';
-@import './../../sass/sass-utils/variable';
-@import './../../sass/sass-utils/mixins';
+@import "./../../sass/sass-utils/color";
+@import "./../../sass/sass-utils/variable";
+@import "./../../sass/sass-utils/mixins";
 
-.button{
-    padding:6px 12px;
-    border: 0;
-    border-radius: 2px;
-    cursor: pointer;
-    font-size: $smallest-text;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    background: none;
+.button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: $smallest-text;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  background: none;
 }
 
-.left-icon-spacing-small{
-    margin:  0 4px 0 0;
+.left-icon-spacing-small {
+  margin: 0 4px 0 0;
 }
-.right-icon-spacing-small{
-    margin: 0 0 0 4px;
+.right-icon-spacing-small {
+  margin: 0 0 0 4px;
 }
 
-.primary{
-    background-color: $primary;
-    color: $white;
+.primary {
+  background-color: $primary;
+  color: $white;
+  &:hover {
+    background-color: $primary-hover;
+  }
+  &:active {
+    @include darkenBackground($primary-hover, 10);
+  }
+  &.disabled-btn {
+    background-color: $primary-disabled;
+    cursor: not-allowed;
+
     &:hover {
-        background-color: $primary-hover;
+      background-color: $primary-disabled;
     }
-    &:active{
-        @include darkenBackground ($primary-hover, 10);
-    }
-    &.disabled-btn {
-        background-color: $primary-disabled ;
-        cursor: not-allowed;
-    
-        &:hover {
-            background-color: $primary-disabled ;
-        }
-    }
+  }
 }
-.secondary{
+.secondary {
+  background-color: $background;
+  color: $body-text-color;
+  &:hover {
+    background-color: $background-dark;
+  }
+  &:active {
+    @include darkenBackground($background-dark, 10);
+  }
+}
+
+.gost {
+  color: $gost-button-text;
+
+  &:hover {
     background-color: $background;
-    color: $body-text-color;
-    &:hover {
-        background-color: $background-dark;
-    }
-    &:active {
-        @include darkenBackground ($background-dark,10);
-    } 
+  }
+  &:active {
+    @include darkenBackground($background-dark, 2);
+  }
+  &.disabled-btn {
+    cursor: not-allowed;
+  }
 }
 
-.gost{
-    color: $body-text-color;
-    &:hover {
-            background-color: $background;
-    }
-    &:active {
-        @include darkenBackground ($background-dark, 2);
-    }
-    &.disabled-btn {
-        cursor: not-allowed;
-    }
+.icon {
+  padding: 0;
+  display: flex;
+
+  & > * {
+    margin: 0;
+  }
+  &:hover {
+    background-color: $background;
+  }
+  &:active {
+    @include darkenBackground($background-dark, 2);
+  }
 }
 
-.icon{
-    padding: 0;
-    display: flex;
-
-    &>*{
-        margin: 0;
-    }
-    &:hover {
-            background-color: $background;
-    }
-    &:active {
-        @include darkenBackground ($background-dark, 2);
-    }       
-}
-
-.sm{
-    padding: 4px;
+.sm {
+  padding: 4px;
 }
