@@ -4,6 +4,9 @@ import { getComments as getCommentsApi } from "./utils/api";
 import "./sass/style.scss";
 import { useEffect, useState } from "react";
 import CommentForm from "./components/CommentForm/CommentForm";
+import { createContext } from "react";
+
+export const commentContext = createContext();
 
 function App() {
   const [comments, setComments] = useState([]);
@@ -114,22 +117,23 @@ function App() {
           </div>
         </div>
         <div className="comment-section">
-          {comments.map((comment, index) => {
-            return (
-              <Comment
-                key={index}
-                currentUser={currentUserId}
-                onDelete={deleteComment}
-                id={index}
-                data={comment}
-                commentsArray={comments}
-                onAddComment={setComments}
-                onUpdateComment={updateComment}
-                onUpdateReplyComment={updateReplyComment}
-                onDelteReplyComment={deleteReplyComment}
-              />
-            );
-          })}
+          <commentContext.Provider value={currentUserId}>
+            {comments.map((comment, index) => {
+              return (
+                <Comment
+                  key={index}
+                  onDelete={deleteComment}
+                  id={index}
+                  data={comment}
+                  commentsArray={comments}
+                  onAddComment={setComments}
+                  onUpdateComment={updateComment}
+                  onUpdateReplyComment={updateReplyComment}
+                  onDelteReplyComment={deleteReplyComment}
+                />
+              );
+            })}
+          </commentContext.Provider>
         </div>
       </div>
     </div>
