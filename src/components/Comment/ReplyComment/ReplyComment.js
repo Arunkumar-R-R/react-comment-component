@@ -18,6 +18,7 @@ export const ReplyComment = (props) => {
     onReplyUpdate,
     onReplyDelete,
     commentsArray,
+    onRespond,
   } = props;
   let replyCommentId = replyCommentData.commentId;
   let replyUserName = replyCommentData.username;
@@ -59,10 +60,6 @@ export const ReplyComment = (props) => {
 
   const closeCommentBox = () => {
     setShowReply(false);
-  };
-
-  const onRespond = () => {
-    console.log("clicked respond");
   };
 
   useEffect(() => {
