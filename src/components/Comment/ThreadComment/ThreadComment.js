@@ -18,14 +18,16 @@ const ThreadComment = (props) => {
     parentData,
   } = props;
 
-  let threadCommentId = threadData.commentId;
-  let threadCommentUserName = threadData.username;
-  let threadCommentText = threadData.text;
-  let threadUserId = threadData.userId;
-
   const currentUser = useContext(commentContext);
+
   const { parentCommentId, parentCommentUserId, parentCommentLength } =
     parentData;
+  const {
+    commentId: threadCommentId,
+    username: threadCommentUserName,
+    text: threadCommentText,
+    userId: threadUserId,
+  } = threadData;
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
