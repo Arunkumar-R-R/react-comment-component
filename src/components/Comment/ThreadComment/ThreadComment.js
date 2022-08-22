@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { commentContext } from "../../../App";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
+import CommentBoxContainer from "../../CommentBoxContainer/CommentBoxContainer";
 import CommentForm from "../../CommentForm/CommentForm";
 import DeleteModal from "../../Modal/DeleteModal/DeleteModal";
 import Modal from "../../Modal/Modal";
@@ -10,10 +11,11 @@ import { editCommentstyle } from "../Comment";
 const ThreadComment = (props) => {
   const {
     threadData,
-    parentCommentId,
     onUpdateThreadComment,
     onDeleteThreadComment,
-    Children,
+    onRespond,
+    commentsArray,
+    parentData,
   } = props;
 
   let threadCommentId = threadData.commentId;
@@ -22,6 +24,8 @@ const ThreadComment = (props) => {
   let threadUserId = threadData.userId;
 
   const currentUser = useContext(commentContext);
+  const { parentCommentId, parentCommentUserId, parentCommentLength } =
+    parentData;
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -29,6 +33,7 @@ const ThreadComment = (props) => {
 
   const [showThreadEditComment, setShowThreadEditComment] = useState(false);
   const [editedThreadComment, SetEditedThreadComment] = useState("");
+  const [showThreadReply, setShowThreadReply] = useState(false);
 
   const handleThreadCommentEdit = () => {
     onUpdateThreadComment(
@@ -47,6 +52,14 @@ const ThreadComment = (props) => {
   const handleDelete = () => {
     onDeleteThreadComment(parentCommentId, threadCommentId);
     setIsOpen(false);
+  };
+
+  const showThreadReplyForm = () => {
+    setShowThreadReply(!showThreadReply);
+  };
+
+  const closeCommentBox = () => {
+    setShowThreadReply(false);
   };
 
   useEffect(() => {
@@ -112,7 +125,7 @@ const ThreadComment = (props) => {
             <>
               <p>{threadCommentText}</p>
               <div className="comment-footer">
-                <Button type="gost" size="sm" disabled="disabled">
+                <Button type="gost" size="sm" onClick={showThreadReplyForm}>
                   Reply
                 </Button>
                 {currentUser === threadUserId && (
@@ -150,7 +163,17 @@ const ThreadComment = (props) => {
           </Modal>
         )}
       </div>
-      {Children}
+      {showThreadReply && (
+        <CommentBoxContainer
+          id={parentCommentUserId}
+          replyCommentsLength={parentCommentLength}
+          commentId={parentCommentId}
+          userId={currentUser}
+          onCancel={closeCommentBox}
+          commentsArray={commentsArray}
+          onRespond={onRespond}
+        />
+      )}
     </>
   );
 };
