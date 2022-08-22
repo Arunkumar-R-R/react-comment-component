@@ -32,6 +32,12 @@ export const ReplyComment = (props) => {
     ? replyCommentsThread.length
     : `0${replyCommentId}`;
 
+  const ParentData = {
+    parentCommentId: replyCommentId,
+    parentCommentUserId: replyUserId,
+    parentCommentLength: replyCommentsThreadLength,
+  };
+
   const currentUser = useContext(commentContext);
 
   const [showReplyEditComment, setShowReplyEditComment] = useState(false);
@@ -172,24 +178,12 @@ export const ReplyComment = (props) => {
                 <ThreadComment
                   key={index}
                   threadData={replyCommentThread}
-                  parentCommentId={replyCommentId}
+                  parentData={ParentData}
                   onUpdateThreadComment={onUpdateThreadComment}
                   onDeleteThreadComment={onDeleteThreadComment}
-                >
-                  <>
-                    {showReply && (
-                      <CommentBoxContainer
-                        id={replyUserId}
-                        replyCommentsLength={replyCommentsThreadLength}
-                        commentId={replyCommentId}
-                        userId={currentUser}
-                        onCancel={closeCommentBox}
-                        commentsArray={commentsArray}
-                        onRespond={onRespond}
-                      />
-                    )}
-                  </>
-                </ThreadComment>
+                  onRespond={onRespond}
+                  commentsArray={commentsArray}
+                ></ThreadComment>
               );
             })
           : ""}
