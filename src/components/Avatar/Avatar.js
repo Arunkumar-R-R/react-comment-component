@@ -39,7 +39,7 @@ const Avatar = (prop) => {
 
   return (
     <canvas
-      className={className}
+      className={` avatar ${className}`}
       id={id}
       width={`${size}`}
       height={`${size}`}

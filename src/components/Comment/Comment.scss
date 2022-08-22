@@ -56,6 +56,9 @@
       left: -10px;
       width: 100%;
       & .threadComments {
+        & .avatar {
+          margin: 0;
+        }
         @extend .replyComments;
         margin: 0 0 0 -5px;
         & .comment-col2 {
