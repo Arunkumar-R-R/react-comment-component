@@ -1,0 +1,16 @@
+@import "./../../sass/sass-utils/color";
+@import "./../../sass/sass-utils/variable";
+@import "./../../sass/sass-utils/mixins";
+
+.editableDiv {
+  padding: 10px;
+  outline: solid 1px;
+  .reply-to-user-tag {
+    padding: 4px;
+    // margin: 3px;
+    display: inline-block;
+    background-color: lighten($color: $primary, $amount: 35);
+    text-decoration: none;
+    color: $primary-hover;
+  }
+}

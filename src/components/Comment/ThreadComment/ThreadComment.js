@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { commentContext } from "../../../App";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
-import CommentBoxContainer from "../../CommentBoxContainer/CommentBoxContainer";
 import CommentForm from "../../CommentForm/CommentForm";
+import Editor from "../../Editor/Editor";
 import DeleteModal from "../../Modal/DeleteModal/DeleteModal";
 import Modal from "../../Modal/Modal";
 import { editCommentstyle } from "../Comment";
@@ -166,15 +166,26 @@ const ThreadComment = (props) => {
         )}
       </div>
       {showThreadReply && (
-        <CommentBoxContainer
+        // <CommentBoxContainer
+        //   id={parentCommentUserId}
+        //   replyTo={threadCommentUserName}
+        //   replyCommentsLength={parentCommentLength}
+        //   commentId={parentCommentId}
+        //   userId={currentUser}
+        //   onCancel={closeCommentBox}
+        //   commentsArray={commentsArray}
+        //   onRespond={onRespond}
+        // />
+        <Editor
           id={parentCommentUserId}
+          replyTo={threadCommentUserName}
           replyCommentsLength={parentCommentLength}
           commentId={parentCommentId}
           userId={currentUser}
           onCancel={closeCommentBox}
           commentsArray={commentsArray}
           onRespond={onRespond}
-        />
+        ></Editor>
       )}
     </>
   );
