@@ -80,3 +80,12 @@
     width: 90% !important;
   }
 }
+
+.reply-to-user-tag {
+  padding: 4px;
+  margin: 0 4px 0 0;
+  display: inline-block;
+  background-color: lighten($color: $primary, $amount: 35);
+  text-decoration: none;
+  color: $primary-hover;
+}
