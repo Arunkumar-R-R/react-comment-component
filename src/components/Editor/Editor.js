@@ -15,7 +15,7 @@ const Editor = (props) => {
     replyTo,
   } = props;
 
-  const [currentComment, SetCurrentComment] = useState("");
+  const [currentComment, SetCurrentComment] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
   const editorRef = useRef();
 
@@ -41,7 +41,7 @@ const Editor = (props) => {
         attrMap["class"]?.nodeValue !== "" &&
         attrMap["href"]?.nodeValue !== ""
       ) {
-        anchorTagAttribute.class = attrMap["class"]?.nodeValue;
+        anchorTagAttribute.className = attrMap["class"]?.nodeValue;
         anchorTagAttribute.href = attrMap["href"]?.nodeValue;
       }
       return createElement(
@@ -61,14 +61,14 @@ const Editor = (props) => {
     console.log(newValue, "newvalue");
     SetCurrentComment(newValue);
     const data = {
-      text: currentComment,
+      text: <div dangerouslySetInnerHTML={{ __html: currentComment }} />,
       username: "current user",
       parentId: commentId,
       userId: userId,
       commentId: replyCommentsLength + commentId,
       upVoteCount: 0,
     };
-
+    console.log(data, "data");
     //deep copy of commentsArray
     const commentsList = JSON.parse(JSON.stringify(commentsArray));
     commentsList.filter((comment) => {
