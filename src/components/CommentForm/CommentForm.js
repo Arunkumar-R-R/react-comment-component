@@ -8,8 +8,16 @@ import {
 import "./CommentForm.scss";
 
 const CommentForm = forwardRef((props, ref) => {
-  const { placeholder, getData, setData, isReset, setReset, id, isEdit } =
-    props;
+  const {
+    placeholder,
+    getData,
+    setData,
+    isReset,
+    setReset,
+    id,
+    isEdit,
+    replyTo,
+  } = props;
 
   const [currentValue, setCurrentValue] = useState(setData ? setData : "");
 
@@ -56,6 +64,15 @@ const CommentForm = forwardRef((props, ref) => {
       setReset(false);
     };
   }, [isEdit, setReset]);
+
+  useEffect(() => {
+    if (replyTo !== undefined) {
+      let wordArray = replyTo.split(" ");
+      let joinedUserName = wordArray.join("_");
+      let replyToUser = `@${joinedUserName} `;
+      setCurrentValue(replyToUser);
+    }
+  }, [replyTo]);
 
   return (
     <>
