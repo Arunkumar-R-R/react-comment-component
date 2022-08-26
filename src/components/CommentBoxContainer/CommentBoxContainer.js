@@ -12,6 +12,8 @@ const CommentBoxContainer = (props) => {
     onRespond,
     commentsArray,
     replyCommentsLength,
+    replyTo,
+    isThreadCommentReply,
   } = props;
   const [reset, setReset] = useState(false);
   const [currentComment, SetCurrentComment] = useState([]);
@@ -26,6 +28,9 @@ const CommentBoxContainer = (props) => {
       commentId: replyCommentsLength + commentId,
       upVoteCount: 0,
     };
+    if (isThreadCommentReply) {
+      data.isThreadCommentReply = isThreadCommentReply;
+    }
 
     //deep copy of commentsArray
     const commentsList = JSON.parse(JSON.stringify(commentsArray));
@@ -76,6 +81,7 @@ const CommentBoxContainer = (props) => {
           isReset={reset}
           setReset={setReset}
           placeholder={"What are your thoughts?"}
+          replyTo={replyTo}
         />
         <div className="commentbox-footer">
           <Button className={"right-spacing-12"} type="gost" onClick={onCancel}>

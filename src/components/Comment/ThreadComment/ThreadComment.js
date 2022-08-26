@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { commentContext } from "../../../App";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
+import CommentBoxContainer from "../../CommentBoxContainer/CommentBoxContainer";
 import CommentForm from "../../CommentForm/CommentForm";
-import Editor from "../../Editor/Editor";
 import DeleteModal from "../../Modal/DeleteModal/DeleteModal";
 import Modal from "../../Modal/Modal";
 import { editCommentstyle } from "../Comment";
@@ -27,6 +27,7 @@ const ThreadComment = (props) => {
     username: threadCommentUserName,
     text: threadCommentText,
     userId: threadUserId,
+    isThreadCommentReply: isCommentReply,
   } = threadData;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -36,6 +37,10 @@ const ThreadComment = (props) => {
   const [showThreadEditComment, setShowThreadEditComment] = useState(false);
   const [editedThreadComment, SetEditedThreadComment] = useState("");
   const [showThreadReply, setShowThreadReply] = useState(false);
+
+  const [showUserName, setShowUserName] = useState(false);
+  const [threadText, setThreadText] = useState("");
+  const [replyToUserName, setReplyToUserName] = useState("");
 
   const handleThreadCommentEdit = () => {
     onUpdateThreadComment(
@@ -63,6 +68,16 @@ const ThreadComment = (props) => {
   const closeCommentBox = () => {
     setShowThreadReply(false);
   };
+
+  useEffect(() => {
+    const userName = threadCommentText.split(" ")[0];
+    setReplyToUserName(userName);
+    const text = threadCommentText.split(" ").slice(1).join(" ");
+    setThreadText(text);
+    if (isCommentReply) {
+      setShowUserName(true);
+    }
+  }, [threadCommentText, threadCommentUserName, isCommentReply]);
 
   useEffect(() => {
     if (
@@ -125,7 +140,18 @@ const ThreadComment = (props) => {
             </div>
           ) : (
             <>
-              <p>{threadCommentText}</p>
+              <p>
+                {showUserName ? (
+                  <>
+                    <a className="reply-to-user-tag" href="/">
+                      {replyToUserName}
+                    </a>
+                    {threadText}
+                  </>
+                ) : (
+                  threadCommentText
+                )}
+              </p>
               <div className="comment-footer">
                 <Button type="gost" size="sm" onClick={showThreadReplyForm}>
                   Reply
@@ -166,17 +192,7 @@ const ThreadComment = (props) => {
         )}
       </div>
       {showThreadReply && (
-        // <CommentBoxContainer
-        //   id={parentCommentUserId}
-        //   replyTo={threadCommentUserName}
-        //   replyCommentsLength={parentCommentLength}
-        //   commentId={parentCommentId}
-        //   userId={currentUser}
-        //   onCancel={closeCommentBox}
-        //   commentsArray={commentsArray}
-        //   onRespond={onRespond}
-        // />
-        <Editor
+        <CommentBoxContainer
           id={parentCommentUserId}
           replyTo={threadCommentUserName}
           replyCommentsLength={parentCommentLength}
@@ -185,7 +201,8 @@ const ThreadComment = (props) => {
           onCancel={closeCommentBox}
           commentsArray={commentsArray}
           onRespond={onRespond}
-        ></Editor>
+          isThreadCommentReply={true}
+        />
       )}
     </>
   );
