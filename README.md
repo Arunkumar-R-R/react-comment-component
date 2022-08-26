@@ -1,6 +1,6 @@
 # React UI Component's
 
-Modern Component's using **React** , **SASS**
+Modern Component's using **React** , **SASS** <br>
 Designed using **Figma**
 
 ## 1 - Interactive Comment Component
