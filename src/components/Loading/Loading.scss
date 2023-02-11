@@ -1,0 +1,12 @@
+@import "./../../sass/sass-utils/color";
+@import "./../../sass/sass-utils/variable";
+@import "./../../sass/sass-utils/mixins";
+
+.loading {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $large-text;
+}
+

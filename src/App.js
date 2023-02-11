@@ -5,6 +5,7 @@ import "./sass/style.scss";
 import { useEffect, useState } from "react";
 import CommentForm from "./components/CommentForm/CommentForm";
 import { createContext } from "react";
+import Loading from "./components/Loading/Loading";
 
 export const commentContext = createContext();
 
@@ -13,6 +14,7 @@ function App() {
   const [currentComment, SetCurrentComment] = useState("");
   const [reset, setReset] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const currentUserId = "currentUser";
 
@@ -117,9 +119,15 @@ function App() {
     setComments(duplicateCommentArray);
   };
 
+  const setCommentData = (data) => {
+    setComments(data);
+    setLoading(false);
+  }
+
   useEffect(() => {
     getCommentsApi().then((data) => {
-      setComments(data);
+      setLoading(true);
+      setTimeout(setCommentData, 2000, data);
     });
   }, []);
 
@@ -156,6 +164,8 @@ function App() {
           </div>
         </div>
         <div className="comment-section">
+          {
+            loading ? <Loading></Loading>:    
           <commentContext.Provider value={currentUserId}>
             {comments.map((comment, index) => {
               return (
@@ -175,6 +185,7 @@ function App() {
               );
             })}
           </commentContext.Provider>
+          }
         </div>
       </div>
     </div>
