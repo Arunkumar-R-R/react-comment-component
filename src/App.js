@@ -122,7 +122,7 @@ function App() {
   const setCommentData = (data) => {
     setComments(data);
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
     getCommentsApi().then((data) => {
@@ -162,30 +162,33 @@ function App() {
               comment
             </Button>
           </div>
+          <div className="horizontal_line"></div>
         </div>
         <div className="comment-section">
-          {
-            loading ? <Loading></Loading>:    
-          <commentContext.Provider value={currentUserId}>
-            {comments.map((comment, index) => {
-              return (
-                <Comment
-                  key={index}
-                  onDelete={deleteComment}
-                  id={index}
-                  data={comment}
-                  commentsArray={comments}
-                  onAddComment={setComments}
-                  onUpdateComment={updateComment}
-                  onUpdateReplyComment={updateReplyComment}
-                  onDelteReplyComment={deleteReplyComment}
-                  onDeleteThreadComment={deleteThreadComment}
-                  onUpdateThreadComment={updateThreadComment}
-                />
-              );
-            })}
-          </commentContext.Provider>
-          }
+          {loading ? (
+            <Loading></Loading>
+          ) : (
+            <commentContext.Provider value={currentUserId}>
+
+              {comments.map((comment, index) => {
+                return (
+                  <Comment
+                    key={index}
+                    onDelete={deleteComment}
+                    id={index}
+                    data={comment}
+                    commentsArray={comments}
+                    onAddComment={setComments}
+                    onUpdateComment={updateComment}
+                    onUpdateReplyComment={updateReplyComment}
+                    onDelteReplyComment={deleteReplyComment}
+                    onDeleteThreadComment={deleteThreadComment}
+                    onUpdateThreadComment={updateThreadComment}
+                  />
+                );
+              })}
+            </commentContext.Provider>
+          )}
         </div>
       </div>
     </div>

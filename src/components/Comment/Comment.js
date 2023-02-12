@@ -44,6 +44,7 @@ const Comment = (prop) => {
   const [editedComment, SetEditedComment] = useState("");
   const [reset, setReset] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [showReplies, setShowReplies] = useState(false);
 
   const showCommentBox = () => {
     setShowReply(!showReply);
@@ -66,6 +67,10 @@ const Comment = (prop) => {
     onUpdateComment(commentId, editedComment);
     setReset(true);
     setShowEditComment(false);
+  };
+
+  const handleRepliesBtn = () => {
+    setShowReplies((showReplies) => !showReplies);
   };
 
   useEffect(() => {
@@ -175,7 +180,55 @@ const Comment = (prop) => {
               onRespond={onAddComment}
             />
           )}
-          {replyComments?.length > 0
+          <div className="replies_btn_container">
+            {replyComments?.length > 0 ? (
+              <Button
+                type="gost"
+                className="replies_btn"
+                onClick={handleRepliesBtn}
+              >
+                {showReplies ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    height="16"
+                    width="16"
+                    className="up_arrow"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4.5 15.75l7.5-7.5 7.5 7.5"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    height="16"
+                    width="16"
+                    className="down_arrow"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                )}
+                {replyComments?.length} Replies
+              </Button>
+            ) : (
+              ""
+            )}
+          </div>
+          {showReplies
             ? replyComments.map((replyComment, index) => {
                 return (
                   <ReplyComment

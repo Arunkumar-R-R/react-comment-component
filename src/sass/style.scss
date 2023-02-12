@@ -34,6 +34,9 @@
       max-width: 600px;
       width: 100%;
     }
+    .comment-section{
+      margin: 16px 0 0 0;
+    }
   }
 }
 .commentbox-footer {
@@ -88,4 +91,10 @@
   background-color: lighten($color: $primary, $amount: 35);
   text-decoration: none;
   color: $primary-hover;
+}
+
+.horizontal_line{
+  height: 2px;
+  background-color: $threadline-color;
+  margin: 16px 0 0 0;
 }

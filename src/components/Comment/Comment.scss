@@ -70,5 +70,17 @@
         margin-bottom: 0;
       }
     }
+    & .replies_btn_container {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      margin: 8px 0 0 0;
+      & .replies_btn {
+        color: $primary;
+        & .down_arrow, & .up_arrow{
+          margin: 0 6px 0 0;
+        }
+      }
+    }
   }
 }
