@@ -51,7 +51,7 @@
     }
     & .replyComments {
       display: flex;
-      margin: 15px 0 0 -5px;
+      margin: 15px 0 0 0;
       position: relative;
       left: -10px;
       width: 100%;
@@ -60,7 +60,7 @@
           margin: 0;
         }
         @extend .replyComments;
-        margin: 0 0 0 -5px;
+        position: static !important;
         & .comment-col2 {
           margin-bottom: 8px;
         }
@@ -74,10 +74,11 @@
       display: flex;
       align-items: center;
       justify-content: start;
-      margin: 8px 0 0 0;
+      margin: 8px 0 8px 0;
       & .replies_btn {
         color: $primary;
-        & .down_arrow, & .up_arrow{
+        & .down_arrow,
+        & .up_arrow {
           margin: 0 6px 0 0;
         }
       }
