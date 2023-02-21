@@ -1,3 +1,4 @@
+import React from "react";
 import "./Tag.scss";
 
 export const Tag = (props) => {
