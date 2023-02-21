@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "../Button/Button";
 import "./Comment.scss";
 import { useContext, useEffect, useState } from "react";

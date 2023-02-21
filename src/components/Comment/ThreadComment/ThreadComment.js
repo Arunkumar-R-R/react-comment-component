@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React,{ useContext, useEffect, useState } from "react";
 import { commentContext } from "../../../App";
 import Avatar from "../../Avatar/Avatar";
 import Button from "../../Button/Button";
